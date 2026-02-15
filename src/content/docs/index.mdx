@@ -1,0 +1,39 @@
+---
+title: Digital Garden
+description: A minimalist space for growing ideas.
+hero:
+  tagline: A minimalist space for growing ideas, knowledge, and streams of thought.
+  image:
+    file: ../../assets/houston.webp
+  actions:
+    - text: Explore the Stream
+      link: /stream/
+      icon: right-arrow
+    - text: Browse the Wiki
+      link: /wiki/
+      icon: open-book
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Garden Zones
+
+<CardGrid stagger>
+	<Card title="Stream" icon="rocket">
+		A continuous flow of thoughts, ideas, and notes. [Explore →](/stream/)
+	</Card>
+	<Card title="Wiki" icon="document">
+		Evergreen knowledge and reference material. [Browse →](/wiki/)
+	</Card>
+	<Card title="Meta" icon="setting">
+		About this digital garden and how it's maintained. [Learn →](/meta/)
+	</Card>
+	<Card title="Digital Gardening" icon="open-book">
+		Ideas grow here through progressive refinement and organic linking.
+	</Card>
+</CardGrid>
+
+---
+
+*Built with Astro + Starlight. Designed with Modern Minimalism.*
