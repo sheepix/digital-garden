@@ -9,7 +9,7 @@ export default defineConfig({
 			title: 'Digital Garden',
 			description: 'A minimalist digital garden for thoughts, knowledge, and streams of consciousness.',
 			logo: {
-				src: './src/assets/houston.webp',
+				src: './src/assets/logo.svg',
 			},
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/sheepix/digital-garden' },
