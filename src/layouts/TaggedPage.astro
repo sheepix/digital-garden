@@ -1,0 +1,21 @@
+---
+# src/layouts/TaggedPage.astro
+# Custom layout that includes tag display
+---
+
+<StarlightLayout {...Astro.props}>
+  <div class="tagged-content">
+    <slot />
+    
+    <!-- Page tags -->
+    {Astro.props.frontmatter?.tags?.length > 0 ? (
+      <div class="mt-6 flex flex-wrap gap-2">
+        {Astro.props.frontmatter.tags.map(tag => (
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-300">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    ) : null}
+  </div>
+</StarlightLayout>

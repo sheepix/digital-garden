@@ -1,18 +1,32 @@
 ---
 // src/components/MarkdownContent.astro
-// Custom MarkdownContent that adds backlinks after the main content
+// Custom MarkdownContent that adds backlinks and tags after the main content
 import Default from '@astrojs/starlight/components/MarkdownContent.astro';
 import Backlinks from './Backlinks.astro';
+import TagCloud from './TagCloud.astro';
+import PageTags from './PageTags.astro';
 
 // Get slug from the URL path
 const pathname = Astro.url.pathname;
 // Remove leading/trailing slashes and trailing slash
 const slug = pathname.replace(/^\//, '').replace(/\/$/, '');
+
+// Check if this is an index page (homepage)
+const isIndexPage = slug === '' || slug === 'index';
+
+// Get frontmatter tags from the current page
+const pageTags = Astro.props.frontmatter?.tags || [];
 ---
 
 <Default {...Astro.props}>
   <slot />
+  
+  <!-- Page tags for individual pages -->
+  {pageTags.length > 0 ? <PageTags tags={pageTags} /> : null}
 </Default>
 
 <!-- Backlinks section -->
 <Backlinks slug={slug} />
+
+<!-- Tag Cloud for index pages -->
+{isIndexPage ? <TagCloud /> : null}

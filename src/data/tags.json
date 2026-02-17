@@ -1,0 +1,97 @@
+{
+  "guides/example": {
+    "title": "guides/example",
+    "tags": [
+      "about",
+      "how",
+      "guides",
+      "\n\nguides",
+      "lead"
+    ],
+    "hasManualTags": false
+  },
+  "index": {
+    "title": "index",
+    "tags": [
+      "text",
+      "stone",
+      "classname",
+      "span",
+      "dark"
+    ],
+    "hasManualTags": false
+  },
+  "meta/index": {
+    "title": "meta/index",
+    "tags": [
+      "digital",
+      "astro",
+      "over",
+      "\n\n",
+      "about"
+    ],
+    "hasManualTags": false
+  },
+  "reference/example": {
+    "title": "reference/example",
+    "tags": [
+      "reference",
+      "\n\nreference",
+      "pages",
+      "ideal",
+      "outlining"
+    ],
+    "hasManualTags": false
+  },
+  "stream/index": {
+    "title": "stream/index",
+    "tags": [
+      "stream",
+      "thoughts",
+      "ideas",
+      "entries",
+      "\n\n"
+    ],
+    "hasManualTags": false
+  },
+  "tags": {
+    "title": "tags",
+    "tags": [
+      "div",
+      "class",
+      "stone",
+      "bg",
+      "dark"
+    ],
+    "hasManualTags": false
+  },
+  "wiki/dev/2026-cn-llm-coding-plan-review": {
+    "title": "wiki/dev/2026-cn-llm-coding-plan-review",
+    "tags": [
+      "minimax",
+      "glm",
+      "kimi",
+      "\n\n",
+      "qwen"
+    ],
+    "hasManualTags": false
+  },
+  "wiki/index": {
+    "title": "wiki/index",
+    "tags": [
+      "\n\n",
+      "wiki",
+      "stream",
+      "index",
+      "guides"
+    ],
+    "hasManualTags": false
+  },
+  "wiki/llm/llm-coding-comparison-2026": {
+    "title": "wiki/llm/llm-coding-comparison-2026",
+    "tags": [
+      "Kimi"
+    ],
+    "hasManualTags": true
+  }
+}
