@@ -84,4 +84,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   generateBacklinks();
 }
 
-export { generateBacklinks };
+export { generateBacklinks, getSlugFromPath };
