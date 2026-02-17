@@ -9,6 +9,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..', '..');
 const contentDir = path.join(projectRoot, 'src/content/docs');
 
+// Match [[link]] or [[link|alias]] patterns
+const wikiLinkRegex = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
+
 function getAllFiles(dir, files = []) {
   const items = fs.readdirSync(dir);
   for (const item of items) {
@@ -24,8 +27,8 @@ function getAllFiles(dir, files = []) {
 }
 
 function extractWikiLinks(content) {
-  // Match [[link]] or [[link|alias]] patterns
-  const wikiLinkRegex = /\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g;
+  // Reset lastIndex for reused regex
+  wikiLinkRegex.lastIndex = 0;
   const links = [];
   let match;
   while ((match = wikiLinkRegex.exec(content)) !== null) {
