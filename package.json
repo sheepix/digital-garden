@@ -3,11 +3,12 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "node src/plugins/generate-backlinks.js && astro dev",
-    "start": "node src/plugins/generate-backlinks.js && astro dev",
-    "build": "node src/plugins/generate-backlinks.js && astro build",
+    "dev": "node src/plugins/extract-tags.js && node src/plugins/generate-backlinks.js && astro dev",
+    "start": "node src/plugins/extract-tags.js && node src/plugins/generate-backlinks.js && astro dev",
+    "build": "node src/plugins/extract-tags.js && node src/plugins/generate-backlinks.js && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "node src/plugins/generate-backlinks.test.js"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.37.6",
