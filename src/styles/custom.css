@@ -184,6 +184,10 @@ a:not(.sidebar-content a):not(.card a):hover {
   transition: all 0.15s ease;
 }
 
+:root[data-theme='light'] .action {
+  color: white;
+}
+
 .action:hover {
   background: var(--sl-color-accent-high);
   transform: translateY(-1px);
