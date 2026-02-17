@@ -31,7 +31,7 @@
 | **Framework** | [Astro](https://astro.build/) | 零 JS 默认输出，极致的加载速度 (Islands Architecture)。 |
 | **Theme Engine** | [Starlight](https://starlight.astro.build/) | 专为文档/知识库设计的 Astro 集成，提供优秀的阅读体验。 |
 | **Styling** | TailwindCSS | 原子化 CSS，用于实现精密排版。 |
-| **Deployment** | Cloudflare Pages | 全球边缘网络分发，秒级构建与部署。 |
+| **Deployment** | Cloudflare Pages | 全球边缘网络分发，秒级构建与部署。 [Live Site](https://eb416178.digital-garden-d2o.pages.dev/) |
 | **Automation** | **OpenClaw CDT** | 由 TechLead & Librion 协同完成从云端 Vault 到 Git 的自动化同步。 |
 
 ## 3. Content Structure
