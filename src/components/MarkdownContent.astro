@@ -1,0 +1,18 @@
+---
+// src/components/MarkdownContent.astro
+// Custom MarkdownContent that adds backlinks after the main content
+import Default from '@astrojs/starlight/components/MarkdownContent.astro';
+import Backlinks from './Backlinks.astro';
+
+// Get slug from the URL path
+const pathname = Astro.url.pathname;
+// Remove leading/trailing slashes and trailing slash
+const slug = pathname.replace(/^\//, '').replace(/\/$/, '');
+---
+
+<Default>
+  <slot />
+</Default>
+
+<!-- Backlinks section -->
+<Backlinks slug={slug} />

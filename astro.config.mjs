@@ -1,9 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import remarkWikiLink from 'remark-wiki-link';
 
 // https://astro.build/config
 export default defineConfig({
+	markdown: {
+		remarkPlugins: [[remarkWikiLink, { hrefTemplate: (permalink) => `/${permalink}` }]],
+	},
 	integrations: [
 		starlight({
 			title: 'Digital Garden',
@@ -36,6 +40,9 @@ export default defineConfig({
 			},
 			pagination: false,
 			lastUpdated: true,
+			components: {
+				MarkdownContent: './src/components/MarkdownContent.astro',
+			},
 		}),
 	],
 });

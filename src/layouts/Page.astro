@@ -1,0 +1,24 @@
+---
+// src/layouts/Page.astro
+// Custom page layout that adds backlinks to all pages
+import type { Props as StarlightProps } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/Page.astro';
+import Backlinks from '../components/Backlinks.astro';
+
+const props = Astro.props;
+---
+
+<Default {...props}>
+  <slot />
+  <!-- DEBUG: Backlinks component rendered -->
+  <Backlinks slug={props.slug} />
+</Default>
+
+<style>
+  /* Debug styling */
+  .debug-backlinks {
+    border: 2px dashed red;
+    padding: 1rem;
+    margin: 1rem;
+  }
+</style>

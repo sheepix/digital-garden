@@ -3,15 +3,17 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
+    "dev": "node src/plugins/generate-backlinks.js && astro dev",
+    "start": "node src/plugins/generate-backlinks.js && astro dev",
+    "build": "node src/plugins/generate-backlinks.js && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.37.6",
     "astro": "^5.6.1",
-    "sharp": "^0.34.2"
+    "remark-wiki-link": "^2.0.1",
+    "sharp": "^0.34.2",
+    "unist-util-visit": "^5.1.0"
   }
 }
