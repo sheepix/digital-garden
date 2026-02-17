@@ -1,689 +1,112 @@
-/* Modern Minimalism Theme for Digital Garden */
-/* Inspired by Linear & Vercel aesthetics */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-/* CSS Variables for theming - Stone-based palette with Indigo accent */
+/* Theme overrides for Starlight to match the Stone palette */
 :root {
-  /* Typography */
-  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-mono: 'Geist Mono', 'Fira Code', 'SF Mono', Monaco, monospace;
-  
-  /* Stone-based gray scale - replaces pure black/white */
-  --sl-color-white: #1c1917;      /* stone-900 for light mode text */
-  --sl-color-gray-1: #292524;     /* stone-800 */
-  --sl-color-gray-2: #44403c;     /* stone-700 */
-  --sl-color-gray-3: #57534e;     /* stone-600 */
-  --sl-color-gray-4: #78716c;     /* stone-500 */
-  --sl-color-gray-5: #a8a29e;     /* stone-400 */
-  --sl-color-gray-6: #d6d3d1;     /* stone-300 */
-  --sl-color-gray-7: #e7e5e4;     /* stone-200 */
-  --sl-color-black: #fafaf9;      /* stone-50 for light mode bg */
-  
-  /* Indigo accent (#6366f1) for links and primary actions */
-  --sl-color-accent-high: #4338ca;  /* indigo-700 */
-  --sl-color-accent: #6366f1;       /* indigo-500 - main accent */
+  /* Core colors mapped to Starlight variables */
   --sl-color-accent-low: #e0e7ff;   /* indigo-100 */
+  --sl-color-accent: #6366f1;       /* indigo-500 */
+  --sl-color-accent-high: #4338ca;  /* indigo-700 */
   
-  /* Layout - increased width */
-  --sl-sidebar-width: 16rem;
-  --sl-content-width: 65rem;        /* Increased from 50rem */
-}
-
-.home-featured-type {
-  color: var(--sl-color-gray-4);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.7rem;
-}
-
-/* Dark theme - Stone palette */
-:root[data-theme='dark'] {
-  --sl-color-white: #fafaf9;      /* stone-50 for dark mode text */
+  --sl-color-white: #fafaf9;      /* stone-50 */
   --sl-color-gray-1: #f5f5f4;     /* stone-100 */
   --sl-color-gray-2: #e7e5e4;     /* stone-200 */
   --sl-color-gray-3: #d6d3d1;     /* stone-300 */
   --sl-color-gray-4: #a8a29e;     /* stone-400 */
   --sl-color-gray-5: #78716c;     /* stone-500 */
   --sl-color-gray-6: #57534e;     /* stone-600 */
-  --sl-color-gray-7: #44403c;     /* stone-700 */
-  --sl-color-black: #1c1917;      /* stone-900 for dark mode bg */
-  
-  /* Indigo accent for dark mode */
+  --sl-color-black: #1c1917;      /* stone-900 */
+
+  /* Fonts */
+  --sl-font: 'Inter', sans-serif;
+  --sl-font-mono: 'Geist Mono', 'Fira Code', monospace;
+
+  /* Layout */
+  --sl-content-width: 65rem;
+  --sl-sidebar-width: 16rem;
+}
+
+/* Dark mode specific overrides */
+:root[data-theme='dark'] {
   --sl-color-accent-high: #818cf8;  /* indigo-400 */
-  --sl-color-accent: #6366f1;       /* indigo-500 - consistent accent */
-  --sl-color-accent-low: #312e81;   /* indigo-900 */
 }
 
-/* Global typography with 4pt (0.25rem) grid rhythm */
+/* Glass effect utilities from design reference */
+.glass-panel {
+    background: rgba(250, 250, 249, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-right: 1px solid rgba(231, 229, 228, 0.5);
+}
+.dark .glass-panel {
+    background: rgba(28, 25, 23, 0.7);
+    border-right: 1px solid rgba(68, 64, 60, 0.5);
+}
+
+.glass-header {
+    background: rgba(250, 250, 249, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(231, 229, 228, 0.8);
+}
+.dark .glass-header {
+    background: rgba(28, 25, 23, 0.85);
+    border-bottom: 1px solid rgba(68, 64, 60, 0.8);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Global body styles to match reference */
 body {
-  font-family: var(--font-family-base);
-  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
+    @apply bg-background-light dark:bg-background-dark text-stone-800 dark:text-stone-100 font-display selection:bg-primary/20 selection:text-primary;
 }
 
-code, pre {
-  font-family: var(--font-family-mono);
+/* Starlight Header Override to match Glass Header */
+header.header {
+    @apply glass-header border-none !important;
 }
 
-/* Headings - tightened letter-spacing */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  color: var(--sl-color-white);
+/* Sidebar adjustments */
+.sidebar-pane {
+    @apply bg-transparent border-r-0 !important;
 }
 
-h1 {
-  font-weight: 700;
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;     /* 24px = 4pt × 6 */
-  margin-top: 2rem;          /* 32px = 4pt × 8 */
+/* Typography adjustments for Starlight content */
+.sl-markdown-content a {
+    @apply text-primary hover:text-indigo-700 dark:hover:text-indigo-400 no-underline border-b border-transparent hover:border-current transition-all;
 }
 
-h2 {
-  font-size: 1.75rem;
-  margin-bottom: 1rem;       /* 16px = 4pt × 4 */
-  margin-top: 2rem;          /* 32px = 4pt × 8 */
-}
-
-h3 {
-  font-size: 1.375rem;
-  margin-bottom: 0.75rem;    /* 12px = 4pt × 3 */
-  margin-top: 1.5rem;        /* 24px = 4pt × 6 */
-}
-
-h4, h5, h6 {
-  font-size: 1.125rem;
-  margin-bottom: 0.5rem;     /* 8px = 4pt × 2 */
-  margin-top: 1rem;          /* 16px = 4pt × 4 */
-}
-
-/* Paragraphs with 4pt rhythm */
-p {
-  margin-bottom: 1rem;       /* 16px = 4pt × 4 */
-  margin-top: 0;
-}
-
-/* Header with blur effect */
-.site-header {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: rgba(250, 250, 249, 0.85);  /* stone-50 with opacity */
-  border-bottom: 1px solid var(--sl-color-gray-6);
-}
-
-:root[data-theme='dark'] .site-header {
-  background: rgba(28, 25, 23, 0.85);     /* stone-900 with opacity */
-}
-
-/* Sidebar with blur effect */
-.sidebar {
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  background: rgba(250, 250, 249, 0.7);
-  border-right: 1px solid var(--sl-color-gray-6);
-}
-
-:root[data-theme='dark'] .sidebar {
-  background: rgba(28, 25, 23, 0.7);
-}
-
-/* Minimalist sidebar items - 4pt grid */
-.sidebar-content {
-  padding: 1rem 0.75rem;     /* 16px 12px */
-}
-
-.sidebar-content a {
-  border-radius: 0.375rem;   /* 6px */
-  padding: 0.5rem 0.75rem;   /* 8px 12px = 4pt × 2, 4pt × 3 */
-  font-size: 0.875rem;
-  font-weight: 400;
-  transition: all 0.15s ease;
-  color: var(--sl-color-gray-2);
-}
-
-.sidebar-content a:hover {
-  background: var(--sl-color-gray-7);
-  color: var(--sl-color-white);
-}
-
-.sidebar-content [aria-current="page"] {
-  background: var(--sl-color-accent-low);
-  color: var(--sl-color-accent);
-  font-weight: 500;
-}
-
-/* Links - Indigo accent color */
-a:not(.sidebar-content a):not(.card a) {
-  color: var(--sl-color-accent);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.15s ease, color 0.15s ease;
-}
-
-a:not(.sidebar-content a):not(.card a):hover {
-  border-bottom-color: var(--sl-color-accent);
-  color: var(--sl-color-accent-high);
-}
-
-/* Clean cards/content containers - 4pt rhythm */
-.card {
-  background: var(--sl-color-gray-7);
-  border: 1px solid var(--sl-color-gray-6);
-  border-radius: 0.5rem;     /* 8px = 4pt × 2 */
-  padding: 1.5rem;           /* 24px = 4pt × 6 */
-}
-
-.card h3 {
-  margin-top: 0;
-}
-
-/* Action buttons - Indigo accent */
-.action {
-  background: var(--sl-color-accent);
-  color: white;
-  border-radius: 0.5rem;
-  padding: 0.75rem 1.25rem;  /* 12px 20px */
-  font-weight: 500;
-  transition: all 0.15s ease;
-}
-
-:root[data-theme='light'] .action {
-  color: white;
-}
-
-.action:hover {
-  background: var(--sl-color-accent-high);
-  transform: translateY(-1px);
-}
-
-.action.secondary {
-  background: transparent;
-  color: var(--sl-color-gray-2);
-  border: 1px solid var(--sl-color-gray-6);
-}
-
-.action.secondary:hover {
-  background: var(--sl-color-gray-7);
-  border-color: var(--sl-color-gray-5);
-}
-
-/* Minimalist search */
-.search-input {
-  background: var(--sl-color-gray-7);
-  border: 1px solid var(--sl-color-gray-6);
-  border-radius: 0.5rem;
-  padding: 0.5rem 0.75rem;
-}
-
-/* Tables - clean minimal style - 4pt rhythm */
-table {
-  border-collapse: collapse;
-  font-size: 0.875rem;
-  margin-bottom: 1.5rem;     /* 24px = 4pt × 6 */
-}
-
-th, td {
-  border-bottom: 1px solid var(--sl-color-gray-6);
-  padding: 0.75rem 1rem;     /* 12px 16px = 4pt × 3, 4pt × 4 */
-}
-
-th {
-  font-weight: 600;
-  text-align: left;
-  background: var(--sl-color-gray-7);
-  color: var(--sl-color-white);
-}
-
-/* Blockquotes - minimal */
-blockquote {
-  border-left: 2px solid var(--sl-color-accent);
-  padding-left: 1rem;        /* 16px = 4pt × 4 */
-  margin: 1.5rem 0;          /* 24px = 4pt × 6 */
-  color: var(--sl-color-gray-3);
-  font-style: italic;
-}
-
-/* Code blocks - minimal - 4pt rhythm */
-pre {
-  background: var(--sl-color-gray-7);
-  border: 1px solid var(--sl-color-gray-6);
-  border-radius: 0.5rem;
-  padding: 1rem;             /* 16px = 4pt × 4 */
-  margin-bottom: 1.5rem;     /* 24px = 4pt × 6 */
-}
-
-code {
-  background: var(--sl-color-gray-7);
-  padding: 0.125rem 0.375rem;
-  border-radius: 0.25rem;
-  font-size: 0.875em;
-  color: var(--sl-color-accent-high);
-}
-
-pre code {
-  background: transparent;
-  padding: 0;
-  color: inherit;
-}
-
-/* Lists - 4pt rhythm */
-ul, ol {
-  margin-bottom: 1rem;       /* 16px = 4pt × 4 */
-  padding-left: 1.5rem;      /* 24px = 4pt × 6 */
-}
-
-li {
-  margin-bottom: 0.25rem;    /* 4px = 4pt × 1 */
-}
-
-/* Selection - Indigo tint */
-::selection {
-  background: var(--sl-color-accent-low);
-  color: var(--sl-color-accent-high);
-}
-
-/* Scrollbar - minimal */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--sl-color-gray-5);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--sl-color-gray-4);
-}
-
-/* Hero section - minimal */
-.hero {
-  padding: clamp(2.5rem, 5vw, 4rem) 0 2.25rem;
-}
-
-.hero h1 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-.hero p {
-  max-width: 38ch;
-  color: var(--sl-color-gray-3);
-  font-size: 1.05rem;
-}
-
-.hero .actions {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1.25rem;
-}
-
-.hero .actions a {
-  border-radius: 999px;
-  border: 1px solid var(--sl-color-gray-6);
-  padding: 0.55rem 1rem;
-  text-decoration: none;
-  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
-}
-
-.hero .actions a:first-child {
-  border-color: transparent;
-  color: #fff;
-  background: linear-gradient(135deg, var(--sl-color-accent) 0%, var(--sl-color-accent-high) 100%);
-  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.28);
-}
-
-.hero .actions a:first-child:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(99, 102, 241, 0.32);
-}
-
-.hero .actions a:last-child {
-  color: var(--sl-color-accent);
-  background: transparent;
-}
-
-/* Homepage layout (blog-focused) */
-.home-page {
-  min-height: calc(100vh - 8.5rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.dg-hero {
-  max-width: 44rem;
-  margin: 1.25rem auto 0;
-  padding: 1.5rem 0 2rem;
-  text-align: center;
-}
-
-.dg-hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  margin: 0 0 1rem;
-  padding: 0.2rem 0.6rem;
-  border-radius: 999px;
-  border: 1px solid var(--sl-color-gray-6);
-  font-size: 0.75rem;
-  color: var(--sl-color-gray-4);
-}
-
-.dg-dot {
-  width: 0.35rem;
-  height: 0.35rem;
-  border-radius: 999px;
-  background: var(--sl-color-accent);
-}
-
-.dg-hero h1 {
-  margin: 0;
-  font-size: clamp(2.1rem, 3vw, 3rem);
-}
-
-.dg-hero-copy {
-  margin: 0.9rem auto 0;
-  max-width: 38ch;
-  color: var(--sl-color-gray-3);
-}
-
-.dg-hero-actions {
-  margin-top: 1.35rem;
-  display: flex;
-  justify-content: center;
-  gap: 0.7rem;
-  flex-wrap: wrap;
-}
-
-.dg-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.55rem 1.05rem;
-  border-radius: 0.6rem;
-  font-size: 0.92rem;
-  font-weight: 600;
-  text-decoration: none;
-  border: 1px solid var(--sl-color-gray-6);
-}
-
-.dg-btn-primary {
-  color: #fff;
-  border-color: transparent;
-  background: linear-gradient(135deg, var(--sl-color-accent) 0%, var(--sl-color-accent-high) 100%);
-  box-shadow: 0 8px 18px rgba(99, 102, 241, 0.25);
-}
-
-.dg-btn-ghost {
-  color: var(--sl-color-gray-2);
-  background: transparent;
-}
-
-.home-section {
-  margin-top: 1.75rem;
-}
-
-.home-section-head {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-bottom: 0.7rem;
-}
-
-.home-section-head h2 {
-  margin: 0;
-  font-size: clamp(1.32rem, 1.1rem + 0.8vw, 1.85rem);
-}
-
-.home-section-rule {
-  height: 1px;
-  flex: 1;
-  background: var(--sl-color-gray-6);
-}
-
-.home-intro-copy {
-  margin: 0 0 0.9rem;
-  max-width: 64ch;
-  color: var(--sl-color-gray-3);
-}
-
-.home-featured-card {
-  border: 1px solid var(--sl-color-gray-6);
-  border-radius: 0.75rem;
-  padding: 1.15rem 1.2rem;
-  background: linear-gradient(145deg, rgba(99, 102, 241, 0.09), rgba(255, 255, 255, 0.01));
-}
-
-.home-featured-meta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.76rem;
-  color: var(--sl-color-gray-4);
-  margin-bottom: 0.55rem;
-}
-
-.home-update-tag {
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  background: rgba(99, 102, 241, 0.12);
-  color: var(--sl-color-accent-high);
-  border-radius: 999px;
-  padding: 0.05rem 0.45rem;
-}
-
-.home-featured-card h3 {
-  margin: 0 0 0.5rem;
-  font-size: clamp(1.25rem, 1.15rem + 0.6vw, 1.7rem);
-}
-
-.home-featured-card p {
-  margin: 0;
-}
-
-.home-featured-info {
-  margin-top: 0.7rem !important;
-  font-size: 0.84rem;
-  color: var(--sl-color-gray-4);
-}
-
-.home-post-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.home-post-list li {
-  margin: 0;
-  padding: 0.85rem 0;
-  border-bottom: 1px dashed var(--sl-color-gray-6);
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 1rem;
-}
-
-.home-post-list li:first-child {
-  border-top: 1px solid var(--sl-color-gray-6);
-}
-
-.home-post-list li a {
-  color: var(--sl-color-white);
-  font-weight: 600;
-}
-
-.home-post-main p {
-  margin: 0.2rem 0 0;
-  color: var(--sl-color-gray-4);
-  font-size: 0.88rem;
-}
-
-.home-post-list li span {
-  white-space: nowrap;
-  color: var(--sl-color-gray-4);
-  font-size: 0.8rem;
-}
-
-.home-post-list li span em {
-  font-style: normal;
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  border: 1px solid var(--sl-color-gray-6);
-  border-radius: 999px;
-  padding: 0.08rem 0.42rem;
-  margin-right: 0.45rem;
-}
-
-.home-topic-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.9rem;
-}
-
-.home-topic-card {
-  border: 1px solid var(--sl-color-gray-6);
-  border-radius: 0.75rem;
-  padding: 1rem;
-  text-decoration: none;
-  background: rgba(255, 255, 255, 0.02);
-  transition: transform 0.16s ease, border-color 0.16s ease;
-}
-
-.home-topic-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--sl-color-accent);
-}
-
-.home-topic-card h3 {
-  margin: 0 0 0.45rem;
-  font-size: 1.06rem;
-}
-
-.home-topic-card p {
-  margin: 0;
-  font-size: 0.88rem;
-  color: var(--sl-color-gray-3);
-}
-
-.home-footer-note {
-  margin-top: auto;
-  padding-top: 1.3rem;
-  border-top: 1px solid var(--sl-color-gray-6);
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.home-signature,
-.home-version {
-  margin: 0.2rem 0;
-  font-size: 0.85rem;
-  color: var(--sl-color-gray-4);
-}
-
-.home-version a {
-  margin: 0 0.5rem;
-}
-
-/* Hero logo/image subtle hover */
-.hero-html img, .hero .logo {
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.hero-html img:hover, .hero .logo:hover {
-  opacity: 0.9;
-  transform: scale(1.02);
-}
-
-/* Header Logo - Clean hover */
-.site-header .logo {
-  opacity: 0.85;
-  transition: opacity 0.2s ease, filter 0.2s ease;
-}
-.site-header .logo:hover {
-  opacity: 1;
-}
-
-/* Content wrapper - max-width applied */
-.content {
-  max-width: var(--sl-content-width);
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .sidebar {
-    backdrop-filter: none;
-    background: var(--sl-color-black);
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
   }
-  
-  .site-header {
-    backdrop-filter: blur(8px);
-  }
-  
-  h1 {
-    font-size: 2rem;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  .home-section-head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.35rem;
-  }
-
-  .dg-hero {
-    text-align: left;
-    margin-top: 0.5rem;
-  }
-
-  .dg-hero-actions {
-    justify-content: flex-start;
-  }
-
-  .dg-btn {
-    width: 100%;
-  }
-
-  .home-post-list li {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-  }
-
-  .home-post-list li span {
-    white-space: normal;
-  }
-
-  .home-footer-note {
-    justify-content: center;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-
-  .home-topic-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero .actions a {
-    width: 100%;
-    text-align: center;
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* Hide default Starlight title on homepage */
+/* We can target the specific h1 if we know the structure, but simpler to just hide the first h1 if it matches the title? */
+/* Actually, let's just let Starlight render it if it does, but we are providing our own H1 in the hero. */
+/* If Starlight renders a title, we will have two "Digital Garden" headers. */
+/* Common pattern: set title in frontmatter to space or something, or use CSS to hide .content-panel > h1:first-child */
+
+.page-title {
+    display: none !important; /* This is a guess at Starlight class */
+}
+
+/* Better approach: Starlight puts the title in a generic header. */
+/* Let's try to target it via generic selector if needed later. */
