@@ -10,7 +10,7 @@ const pathname = Astro.url.pathname;
 const slug = pathname.replace(/^\//, '').replace(/\/$/, '');
 ---
 
-<Default>
+<Default {...Astro.props}>
   <slot />
 </Default>
 
