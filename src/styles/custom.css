@@ -313,6 +313,15 @@ li {
   transform: scale(1.02);
 }
 
+/* Header Logo - Clean hover */
+.site-header .logo {
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+.site-header .logo:hover {
+  opacity: 1;
+}
+
 /* Content wrapper - max-width applied */
 .content {
   max-width: var(--sl-content-width);
