@@ -9,13 +9,34 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '..', '..');
 const contentDir = path.join(projectRoot, 'src/content/docs');
 
-function getAllFiles(dir, files = []) {
+function getAllFiles(dir, files = [], visited = new Set()) {
+  // Resolve symlinks to avoid infinite recursion
+  let realDir;
+  try {
+    realDir = fs.realpathSync(dir);
+  } catch (e) {
+    // If the path cannot be resolved, skip it
+    return files;
+  }
+
+  if (visited.has(realDir)) {
+    return files;
+  }
+  visited.add(realDir);
+
   const items = fs.readdirSync(dir);
   for (const item of items) {
     const fullPath = path.join(dir, item);
-    const stat = fs.statSync(fullPath);
+    let stat;
+    try {
+      stat = fs.statSync(fullPath);
+    } catch (e) {
+      // Skip if we can't stat (e.g. broken symlink)
+      continue;
+    }
+
     if (stat.isDirectory()) {
-      getAllFiles(fullPath, files);
+      getAllFiles(fullPath, files, visited);
     } else if (item.endsWith('.md') || item.endsWith('.mdx')) {
       files.push(fullPath);
     }
@@ -84,4 +105,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   generateBacklinks();
 }
 
-export { generateBacklinks };
+export { generateBacklinks, getAllFiles };
