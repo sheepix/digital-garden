@@ -7,7 +7,8 @@
     "start": "node src/plugins/generate-backlinks.js && astro dev",
     "build": "node src/plugins/generate-backlinks.js && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "node src/plugins/generate-backlinks.test.js"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.37.6",
