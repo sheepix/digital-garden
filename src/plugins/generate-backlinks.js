@@ -49,16 +49,16 @@ function generateBacklinks() {
   const files = getAllFiles(contentDir);
   const backlinks = {};
   
-  // Initialize backlinks for all pages
-  for (const file of files) {
-    const slug = getSlugFromPath(file, contentDir);
-    backlinks[slug] = [];
-  }
-  
   // Extract links and build reverse index
   for (const file of files) {
     const content = fs.readFileSync(file, 'utf-8');
     const slug = getSlugFromPath(file, contentDir);
+
+    // Initialize backlinks for current page if not exists
+    if (!backlinks[slug]) {
+      backlinks[slug] = [];
+    }
+
     const links = extractWikiLinks(content);
     
     for (const link of links) {
