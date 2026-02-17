@@ -214,6 +214,172 @@ header.header {
     transform: translate3d(0, 0, 0);
   }
 }
+
+/* Action buttons - Indigo accent */
+.action, .sl-link-button {
+  background: var(--sl-color-accent) !important;
+  color: white !important;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.action:hover, .sl-link-button:hover {
+  background: var(--sl-color-accent-high) !important;
+  transform: translateY(-1px);
+}
+
+.action.secondary, .sl-link-button.secondary {
+  background: transparent !important;
+  color: var(--sl-color-gray-2) !important;
+  border: 1px solid var(--sl-color-gray-6);
+}
+
+.action.secondary:hover, .sl-link-button.secondary:hover {
+  background: var(--sl-color-gray-7);
+  border-color: var(--sl-color-gray-5);
+}
+
+/* Minimalist search */
+.search-input {
+  background: var(--sl-color-gray-7);
+  border: 1px solid var(--sl-color-gray-6);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+/* Tables - clean minimal style - 4pt rhythm */
+table {
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;     /* 24px = 4pt × 6 */
+}
+
+th, td {
+  border-bottom: 1px solid var(--sl-color-gray-6);
+  padding: 0.75rem 1rem;     /* 12px 16px = 4pt × 3, 4pt × 4 */
+}
+
+th {
+  font-weight: 600;
+  text-align: left;
+  background: var(--sl-color-gray-7);
+  color: var(--sl-color-white);
+}
+
+/* Blockquotes - minimal */
+blockquote {
+  border-left: 2px solid var(--sl-color-accent);
+  padding-left: 1rem;        /* 16px = 4pt × 4 */
+  margin: 1.5rem 0;          /* 24px = 4pt × 6 */
+  color: var(--sl-color-gray-3);
+  font-style: italic;
+}
+
+/* Code blocks - minimal - 4pt rhythm */
+pre {
+  background: var(--sl-color-gray-7);
+  border: 1px solid var(--sl-color-gray-6);
+  border-radius: 0.5rem;
+  padding: 1rem;             /* 16px = 4pt × 4 */
+  margin-bottom: 1.5rem;     /* 24px = 4pt × 6 */
+}
+
+code {
+  background: var(--sl-color-gray-7);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  color: var(--sl-color-accent-high);
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+/* Lists - 4pt rhythm */
+ul, ol {
+  margin-bottom: 1rem;       /* 16px = 4pt × 4 */
+  padding-left: 1.5rem;      /* 24px = 4pt × 6 */
+}
+
+li {
+  margin-bottom: 0.25rem;    /* 4px = 4pt × 1 */
+}
+
+/* Selection - Indigo tint */
+::selection {
+  background: var(--sl-color-accent-low);
+  color: var(--sl-color-accent-high);
+}
+
+/* Scrollbar - minimal */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sl-color-gray-5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sl-color-gray-4);
+}
+
+/* Hero section - minimal */
+.hero {
+  padding: 3rem 0;           /* 48px = 4pt × 12 */
+}
+
+.hero h1 {
+  margin-top: 0;
+}
+
+/* Hero logo/image subtle hover */
+.hero-html img, .hero .logo {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.hero-html img:hover, .hero .logo:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
+/* Header Logo - Clean hover */
+.site-header .logo {
+  opacity: 0.85;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+.site-header .logo:hover {
+  opacity: 1;
+}
+
+/* Content wrapper - max-width applied */
+.content {
+  max-width: var(--sl-content-width);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    backdrop-filter: none;
+    background: var(--sl-color-black);
+>>>>>>> Stashed changes
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
 .animate-fade-in-up {
   animation: fadeInUp 0.5s ease-out forwards;
 }
