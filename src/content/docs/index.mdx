@@ -1,48 +1,110 @@
 ---
 title: Digital Garden
-description: A minimalist space for growing ideas.
-hero:
-  tagline: A minimalist space for growing ideas, knowledge, and streams of thought.
-  image:
-    file: ../../assets/logo.svg
-  actions:
-    - text: Explore the Stream
-      link: /stream/
-      icon: right-arrow
-    - text: Browse the Wiki
-      link: /wiki/
-      icon: open-book
-      variant: minimal
+description: Notes, essays, and experiments for continuous learning.
 ---
 
-import { Card, CardGrid } from "@astrojs/starlight/components";
+<div className="home-page">
+  <section className="dg-hero">
+    <p className="dg-hero-badge"><span className="dg-dot" />Garden actively cultivated</p>
+    <h1>Digital Garden</h1>
+    <p className="dg-hero-copy">
+      Notes, essays, and experiments for continuous learning. A collection of thoughts on software engineering,
+      design systems, and personal growth.
+    </p>
+    <div className="dg-hero-actions">
+      <a className="dg-btn dg-btn-primary" href="/wiki/">Explore Wiki</a>
+      <a className="dg-btn dg-btn-ghost" href="/stream/">Latest Updates</a>
+    </div>
+  </section>
 
-## Garden Zones
+  <section className="home-section home-featured">
+    <div className="home-section-head">
+      <h2>Latest from the Garden</h2>
+      <div className="home-section-rule" />
+    </div>
+    <p className="home-intro-copy">
+      Exploring engineering patterns, tooling experiments, and deep dives into the ecosystem.
+    </p>
 
-<CardGrid>
-  <Card title="Stream" icon="rocket">
-    A continuous flow of thoughts, ideas, and notes. [Explore →](/stream/)
-  </Card>
-  <Card title="Wiki" icon="document">
-    Evergreen knowledge and reference material. [Browse →](/wiki/)
-  </Card>
-  <Card title="Meta" icon="setting">
-    About this digital garden and how it's maintained. [Learn →](/meta/)
-  </Card>
-  <Card title="Digital Gardening" icon="open-book">
-    Ideas grow here through progressive refinement and organic linking.
-  </Card>
-</CardGrid>
+    <article className="home-featured-card">
+      <div className="home-featured-meta">
+        <span className="home-update-tag">Featured</span>
+        <span className="home-featured-type">Wiki</span>
+      </div>
+      <h3><a href="/wiki/llm/llm-coding-comparison-2026/">2026 国产 LLM Coding Plan 深度对比报告</a></h3>
+      <p>
+        An in-depth comparison of domestic Large Language Models focused on coding capabilities. Benchmarking
+        latency, context window accuracy, and integration with modern IDE workflows.
+      </p>
+      <p className="home-featured-info">Feb 14, 2026 <span aria-hidden="true">·</span> 12 min read</p>
+    </article>
 
-## Recent Blossoms
+  </section>
 
-### 🌲 Wiki
-- [2026 国产 LLM Coding Plan 深度对比报告](/wiki/llm/llm-coding-comparison-2026/) — 全面对比百炼、Kimi、智谱、MiniMax。
+<section className="home-section home-latest">
+  <ul className="home-post-list">
+    <li>
+      <div className="home-post-main">
+        <a href="/wiki/">Migrating to Astro Starlight: A Retro</a>
+        <p>
+          Lessons learned moving from a custom Next.js setup to a
+          content-focused framework.
+        </p>
+      </div>
+      <span>
+        <em>Engineering</em> Feb 10, 2026
+      </span>
+    </li>
+    <li>
+      <div className="home-post-main">
+        <a href="/wiki/design/">The Psychology of Color in Data Viz</a>
+        <p>How hue and saturation affect decision making in dashboards.</p>
+      </div>
+      <span>
+        <em>Design</em> Jan 28, 2026
+      </span>
+    </li>
+    <li>
+      <div className="home-post-main">
+        <a href="/stream/">Weekly Stream: Rolling Updates</a>
+        <p>Quick links, tweets, and thoughts from the past week.</p>
+      </div>
+      <span>
+        <em>Stream</em> Rolling
+      </span>
+    </li>
+  </ul>
+</section>
 
----
+  <section className="home-section home-topics">
+    <div className="home-section-head">
+      <h2>Explore by Topic</h2>
+      <div className="home-section-rule" />
+    </div>
 
-_Built with Astro + Starlight. Designed with Modern Minimalism._
+    <div className="home-topic-grid">
+      <a className="home-topic-card" href="/wiki/">
+        <span className="home-topic-icon">⌘</span>
+        <h3>Engineering</h3>
+        <p>Software architecture, coding patterns, and devops.</p>
+      </a>
+      <a className="home-topic-card" href="/stream/">
+        <span className="home-topic-icon">◉</span>
+        <h3>Thinking</h3>
+        <p>Mental models, productivity, and learning strategies.</p>
+      </a>
+      <a className="home-topic-card" href="/meta/">
+        <span className="home-topic-icon">✦</span>
+        <h3>System</h3>
+        <p>Workflow automation, tools, and personal infrastructure.</p>
+      </a>
+    </div>
 
-## Version Info
+  </section>
 
-**Digital Garden v1.0.0** | [Change Log](/wiki/)
+  <section className="home-section home-footer-note">
+    <p className="home-signature">© 2026 Digital Garden. · v2.4.9</p>
+    <p className="home-version"><a href="https://x.com/">Twitter</a><a href="https://github.com/sheepix/digital-garden">GitHub</a></p>
+    <p className="home-version">Built with <strong>Astro</strong> + <strong>Starlight</strong></p>
+  </section>
+</div>
