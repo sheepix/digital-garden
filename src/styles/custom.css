@@ -303,6 +303,16 @@ li {
   margin-top: 0;
 }
 
+/* Hero logo/image subtle hover */
+.hero-html img, .hero .logo {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.hero-html img:hover, .hero .logo:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+
 /* Content wrapper - max-width applied */
 .content {
   max-width: var(--sl-content-width);
