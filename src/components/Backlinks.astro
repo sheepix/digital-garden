@@ -38,17 +38,26 @@ function getCategory(linkSlug: string): string {
 ---
 
 {pageBacklinks.length > 0 ? (
-    <aside class="backlinks-section">
-      <h3 class="backlinks-heading">Links to this page</h3>
+    <aside class="backlinks-section" aria-labelledby="backlinks-heading">
+      <h3 id="backlinks-heading" class="backlinks-heading">Links to this page</h3>
       <ul class="backlinks-list">
-        {pageBacklinks.map((link: string) => (
+        {pageBacklinks.map((link: string) => {
+          const category = getCategory(link);
+          const title = formatTitle(link);
+          return (
           <li class="backlink-item">
-            <a href={`/${link}`} class="backlink-link">
-              <span class="backlink-category">{getCategory(link)}</span>
-              <span class="backlink-title">{formatTitle(link)}</span>
+            <a
+              href={`/${link}`}
+              class="backlink-link"
+              aria-label={`Link to ${title}${category ? `, in ${category}` : ''}`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="backlink-icon" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              {category && <span class="backlink-category">{category}</span>}
+              <span class="backlink-title">{title}</span>
             </a>
           </li>
-        ))}
+          );
+        })}
       </ul>
     </aside>
 ) : null}
@@ -94,12 +103,38 @@ function getCategory(linkSlug: string): string {
     color: var(--sl-color-gray-2);
     text-decoration: none;
     transition: all 0.15s ease;
+    /* Ensure interactive elements have sufficient touch target size (even if visually smaller) */
+    min-height: 2.25rem;
   }
 
   .backlink-link:hover {
     background: var(--sl-color-accent-low);
     border-color: var(--sl-color-accent);
     color: var(--sl-color-accent);
+  }
+
+  /* Focus styles for accessibility */
+  .backlink-link:focus-visible {
+    outline: 2px solid var(--sl-color-accent);
+    outline-offset: 2px;
+    background: var(--sl-color-accent-low);
+    border-color: var(--sl-color-accent);
+    color: var(--sl-color-accent);
+  }
+
+  /* Icon styles */
+  .backlink-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+    opacity: 0.7;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .backlink-link:hover .backlink-icon,
+  .backlink-link:focus-visible .backlink-icon {
+    transform: translateX(2px);
+    opacity: 1;
   }
 
   .backlink-category {
@@ -109,7 +144,8 @@ function getCategory(linkSlug: string): string {
     color: var(--sl-color-gray-4);
   }
 
-  .backlink-link:hover .backlink-category {
+  .backlink-link:hover .backlink-category,
+  .backlink-link:focus-visible .backlink-category {
     color: var(--sl-color-accent);
   }
 
