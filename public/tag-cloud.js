@@ -6,7 +6,7 @@ function getTagSize(count, maxCount) {
 }
 
 function loadTagCloud() {
-  fetch('/src/data/tags.json')
+  fetch('/tags.json')
     .then(function(response) {
       return response.json();
     })

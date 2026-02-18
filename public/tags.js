@@ -1,6 +1,6 @@
 // src/static/tags.js
 function loadTags() {
-  fetch('/src/data/tags.json')
+  fetch('/tags.json')
     .then(response => response.json())
     .then(tagsData => {
       const tagMap = {};

@@ -172,7 +172,7 @@ export function processAllFilesForTags() {
   }
 
   // 写入标签数据文件
-  const outputPath = path.join(projectRoot, 'src/data/tags.json');
+  const outputPath = path.join(projectRoot, 'public/tags.json');
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, JSON.stringify(tagsData, null, 2));
   
