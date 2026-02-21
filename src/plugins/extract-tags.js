@@ -42,6 +42,7 @@ export function extractTagsFromContent(content, existingTags = []) {
   // 提取所有单词和中文词汇
   const text = contentWithoutFrontmatter
     .replace(/[^a-zA-Z0-9\u4e00-\u9fff\s]/g, ' ') // 保留字母、数字、中文字符
+    .replace(/\s+/g, ' ') // 将所有空白字符（包括换行）替换为空格
     .toLowerCase();
 
   // 分词：英文按空格分，中文按字符分（简化处理）
