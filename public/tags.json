@@ -2,11 +2,11 @@
   "guides/example": {
     "title": "guides/example",
     "tags": [
+      "guides",
       "about",
       "how",
-      "guides",
-      "\n\nguides",
-      "lead"
+      "lead",
+      "user"
     ],
     "hasManualTags": false
   },
@@ -25,10 +25,10 @@
     "title": "meta/index",
     "tags": [
       "digital",
+      "garden",
       "astro",
-      "over",
-      "\n\n",
-      "about"
+      "design",
+      "over"
     ],
     "hasManualTags": false
   },
@@ -36,10 +36,10 @@
     "title": "reference/example",
     "tags": [
       "reference",
-      "\n\nreference",
       "pages",
       "ideal",
-      "outlining"
+      "outlining",
+      "how"
     ],
     "hasManualTags": false
   },
@@ -47,10 +47,10 @@
     "title": "stream/index",
     "tags": [
       "stream",
+      "entries",
       "thoughts",
       "ideas",
-      "entries",
-      "\n\n"
+      "welcome"
     ],
     "hasManualTags": false
   },
@@ -68,22 +68,22 @@
   "wiki/dev/2026-cn-llm-coding-plan-review": {
     "title": "wiki/dev/2026-cn-llm-coding-plan-review",
     "tags": [
-      "minimax",
       "glm",
+      "minimax",
       "kimi",
-      "\n\n",
-      "qwen"
+      "qwen",
+      "lite"
     ],
     "hasManualTags": false
   },
   "wiki/index": {
     "title": "wiki/index",
     "tags": [
-      "\n\n",
       "wiki",
+      "knowledge",
+      "time",
       "stream",
-      "index",
-      "guides"
+      "index"
     ],
     "hasManualTags": false
   },

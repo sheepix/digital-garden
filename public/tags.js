@@ -35,7 +35,7 @@ function loadTags() {
       let html = '';
       for (let i = 0; i < tagsArray.length; i++) {
         const item = tagsArray[i];
-        html += '<div class="border border-stone-200 dark:border-stone-700 rounded-lg p-6 hover:border-primary/50 transition-colors">';
+        html += '<div id="tag-' + item.tag + '" class="border border-stone-200 dark:border-stone-700 rounded-lg p-6 hover:border-primary/50 transition-colors">';
         html += '<div class="flex items-center justify-between mb-4">';
         html += '<h2 class="text-xl font-semibold text-stone-900 dark:text-white">';
         html += '<a href="#tag-' + item.tag + '" class="hover:text-primary transition-colors">#' + item.tag + '</a>';
