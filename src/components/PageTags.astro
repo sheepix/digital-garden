@@ -7,7 +7,7 @@
   <div class="page-tags mt-6 flex flex-wrap gap-2">
     {Astro.props.tags.map(tag => (
       <a 
-        href="/tags/"
+        href={`/tags/#tag-${tag}`}
         class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-300 hover:bg-primary/10 hover:text-primary transition-colors"
       >
         #{tag}
