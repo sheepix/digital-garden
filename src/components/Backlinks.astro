@@ -43,7 +43,7 @@ function getCategory(linkSlug: string): string {
       <ul class="backlinks-list">
         {pageBacklinks.map((link: string) => (
           <li class="backlink-item">
-            <a href={`/${link}`} class="backlink-link">
+            <a href={`/${link}`} class="backlink-link focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none">
               <span class="backlink-category">{getCategory(link)}</span>
               <span class="backlink-title">{formatTitle(link)}</span>
             </a>
