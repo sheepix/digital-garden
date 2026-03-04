@@ -6,6 +6,8 @@ import Backlinks from './Backlinks.astro';
 import TagCloud from './TagCloud.astro';
 import PageTags from './PageTags.astro';
 
+import tagsData from '../data/tags.json';
+
 // Get slug from the URL path
 const pathname = Astro.url.pathname;
 // Remove leading/trailing slashes and trailing slash
@@ -15,7 +17,7 @@ const slug = pathname.replace(/^\//, '').replace(/\/$/, '');
 const isIndexPage = slug === '' || slug === 'index';
 
 // Get frontmatter tags from the current page
-const pageTags = Astro.props.frontmatter?.tags || [];
+const pageTags = Astro.props.entry?.data?.tags || Astro.props.frontmatter?.tags || tagsData[slug]?.tags || tagsData[`${slug}/index`]?.tags || [];
 ---
 
 <Default {...Astro.props}>
