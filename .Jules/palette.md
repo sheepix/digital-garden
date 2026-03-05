@@ -1,0 +1,3 @@
+## 2024-05-14 - Semantic Tagging and Deep Links
+**Learning:** In Astro components, simple lists of links (like tags) often lack semantic structure and context for screen readers. In addition, when implementing deep links to a generic tags page, it's critical to generate correct anchor hashes using `encodeURIComponent` to ensure navigation actually works. Focus states should also provide clear contrast in both light and dark modes using Tailwind classes (e.g., `focus-visible:ring-primary dark:focus-visible:ring-offset-stone-900`).
+**Action:** Always wrap lists of related navigational links in a `<nav aria-label="...">` rather than a generic `<div>`, and apply deep linking with properly encoded tag names alongside cross-theme focus state classes.
