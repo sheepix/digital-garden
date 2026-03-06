@@ -96,10 +96,16 @@ function getCategory(linkSlug: string): string {
     transition: all 0.15s ease;
   }
 
-  .backlink-link:hover {
+  .backlink-link:hover,
+  .backlink-link:focus-visible {
     background: var(--sl-color-accent-low);
     border-color: var(--sl-color-accent);
     color: var(--sl-color-accent);
+    outline: none;
+  }
+
+  .backlink-link:focus-visible {
+    box-shadow: 0 0 0 2px var(--sl-color-accent);
   }
 
   .backlink-category {
@@ -109,7 +115,8 @@ function getCategory(linkSlug: string): string {
     color: var(--sl-color-gray-4);
   }
 
-  .backlink-link:hover .backlink-category {
+  .backlink-link:hover .backlink-category,
+  .backlink-link:focus-visible .backlink-category {
     color: var(--sl-color-accent);
   }
 
