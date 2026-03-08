@@ -1,4 +1,17 @@
 // src/static/tags.js
+function escapeHTML(str) {
+  return str.replace(/[&<>'"]/g, function(tag) {
+    const charsToReplace = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    };
+    return charsToReplace[tag] || tag;
+  });
+}
+
 function loadTags() {
   fetch('/tags.json')
     .then(response => response.json())
@@ -35,10 +48,13 @@ function loadTags() {
       let html = '';
       for (let i = 0; i < tagsArray.length; i++) {
         const item = tagsArray[i];
-        html += '<div class="border border-stone-200 dark:border-stone-700 rounded-lg p-6 hover:border-primary/50 transition-colors">';
+        const encodedTag = encodeURIComponent(item.tag);
+        const safeTag = escapeHTML(item.tag);
+
+        html += '<div id="tag-' + encodedTag + '" class="scroll-mt-24 border border-stone-200 dark:border-stone-700 rounded-lg p-6 hover:border-primary/50 transition-colors">';
         html += '<div class="flex items-center justify-between mb-4">';
         html += '<h2 class="text-xl font-semibold text-stone-900 dark:text-white">';
-        html += '<a href="#tag-' + item.tag + '" class="hover:text-primary transition-colors">#' + item.tag + '</a>';
+        html += '<a href="#tag-' + encodedTag + '" class="hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:focus-visible:ring-offset-stone-900 transition-colors outline-none rounded">#' + safeTag + '</a>';
         html += '</h2>';
         html += '<span class="px-2 py-1 bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 text-sm rounded">';
         html += item.count + ' ' + (item.count === 1 ? 'page' : 'pages') + '</span>';
@@ -46,7 +62,7 @@ function loadTags() {
         
         for (let j = 0; j < Math.min(item.pages.length, 5); j++) {
           const page = item.pages[j];
-          html += '<a href="/' + page.slug + '" class="block text-stone-600 dark:text-stone-400 hover:text-primary dark:hover:text-primary transition-colors text-sm">• ' + page.title + '</a>';
+          html += '<a href="/' + page.slug + '" class="block text-stone-600 dark:text-stone-400 hover:text-primary dark:hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:focus-visible:ring-offset-stone-900 transition-colors outline-none rounded text-sm">• ' + escapeHTML(page.title) + '</a>';
         }
         
         if (item.pages.length > 5) {
