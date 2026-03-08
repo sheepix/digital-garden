@@ -1,3 +1,16 @@
+function escapeHTML(str) {
+  return str.replace(/[&<>'"]/g, function(tag) {
+    var charsToReplace = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    };
+    return charsToReplace[tag] || tag;
+  });
+}
+
 function getTagSize(count, maxCount) {
   var minSize = 0.875;
   var maxSize = 1.25;
@@ -33,7 +46,7 @@ function loadTagCloud() {
       for (var i = 0; i < sortedTags.length; i++) {
         var tag = sortedTags[i][0];
         var count = sortedTags[i][1];
-        html += '<a href="/tags/#tag-' + tag + '" class="inline-block px-2 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-primary/10 hover:text-primary transition-colors" style="font-size: ' + getTagSize(count, maxCount) + '">#' + tag + '</a>';
+        html += '<a href="/tags/#tag-' + encodeURIComponent(tag) + '" aria-label="View all pages tagged with ' + escapeHTML(tag) + '" class="inline-block px-2 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-primary/10 hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:focus-visible:ring-offset-stone-900 transition-colors outline-none" style="font-size: ' + getTagSize(count, maxCount) + '">#' + escapeHTML(tag) + '</a>';
       }
       html += '</div>';
       
