@@ -33,7 +33,7 @@ function loadTagCloud() {
       for (var i = 0; i < sortedTags.length; i++) {
         var tag = sortedTags[i][0];
         var count = sortedTags[i][1];
-        html += '<a href="/tags/#tag-' + tag + '" class="inline-block px-2 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-primary/10 hover:text-primary transition-colors" style="font-size: ' + getTagSize(count, maxCount) + '">#' + tag + '</a>';
+        html += '<a href="/tags/#tag-' + encodeURIComponent(tag) + '" class="inline-block px-2 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-primary/10 hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:focus-visible:ring-offset-stone-900 outline-none transition-colors" style="font-size: ' + getTagSize(count, maxCount) + '">#' + tag + '</a>';
       }
       html += '</div>';
       
