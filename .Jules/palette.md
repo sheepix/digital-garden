@@ -1,0 +1,3 @@
+## 2024-05-18 - Semantic Navigation and Keyboard Focus for Tags
+**Learning:** Using simple `<div>` elements for tag lists hides them from screen reader navigation menus. Also, dynamic lists of tags lacked clear keyboard focus states in dark mode.
+**Action:** Use `<nav aria-label="Page tags">` for tag containers, provide `aria-label` per tag link, and implement explicit `focus-visible` Tailwind classes (with `dark:focus-visible:ring-offset-stone-900`) for distinct keyboard navigation states across themes.
