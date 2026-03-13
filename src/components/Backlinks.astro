@@ -38,8 +38,8 @@ function getCategory(linkSlug: string): string {
 ---
 
 {pageBacklinks.length > 0 ? (
-    <aside class="backlinks-section">
-      <h3 class="backlinks-heading">Links to this page</h3>
+    <aside class="backlinks-section" aria-labelledby="backlinks-heading">
+      <h3 id="backlinks-heading" class="backlinks-heading">Links to this page</h3>
       <ul class="backlinks-list">
         {pageBacklinks.map((link: string) => (
           <li class="backlink-item">
@@ -96,10 +96,16 @@ function getCategory(linkSlug: string): string {
     transition: all 0.15s ease;
   }
 
-  .backlink-link:hover {
+  .backlink-link:hover,
+  .backlink-link:focus-visible {
     background: var(--sl-color-accent-low);
     border-color: var(--sl-color-accent);
     color: var(--sl-color-accent);
+    outline: none;
+  }
+
+  .backlink-link:focus-visible {
+    box-shadow: 0 0 0 2px var(--sl-color-accent);
   }
 
   .backlink-category {
