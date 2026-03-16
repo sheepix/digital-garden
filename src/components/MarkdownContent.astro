@@ -14,8 +14,15 @@ const slug = pathname.replace(/^\//, '').replace(/\/$/, '');
 // Check if this is an index page (homepage)
 const isIndexPage = slug === '' || slug === 'index';
 
+import tagsData from '../data/tags.json';
+
 // Get frontmatter tags from the current page
-const pageTags = Astro.props.frontmatter?.tags || [];
+let pageTags = Astro.props.entry?.data?.tags || Astro.props.frontmatter?.tags || [];
+
+// Fallback to tagsData if missing
+if (pageTags.length === 0 && tagsData[slug] && tagsData[slug].tags) {
+  pageTags = tagsData[slug].tags;
+}
 ---
 
 <Default {...Astro.props}>
