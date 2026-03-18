@@ -14,8 +14,9 @@ const slug = pathname.replace(/^\//, '').replace(/\/$/, '');
 // Check if this is an index page (homepage)
 const isIndexPage = slug === '' || slug === 'index';
 
-// Get frontmatter tags from the current page
-const pageTags = Astro.props.frontmatter?.tags || [];
+import tagsData from '../data/tags.json';
+// Get frontmatter tags from the current page (Starlight passes this via entry.data.tags or we fall back to our extracted data)
+const pageTags = Astro.props.entry?.data?.tags || Astro.props.frontmatter?.tags || (tagsData[slug] ? tagsData[slug].tags : []);
 ---
 
 <Default {...Astro.props}>
