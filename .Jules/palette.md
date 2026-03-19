@@ -1,0 +1,3 @@
+## 2026-02-18 - Improve Tag Anchor Linking
+**Learning:** Using `encodeURIComponent(tag)` directly as an HTML `id` causes issues when tags have spaces. The browser URL-decodes the hash automatically (e.g., `#tag-my%20tag` becomes `tag-my tag`), which fails to match the `id` on the page (`id="tag-my%20tag"`).
+**Action:** Always apply a slugification function (e.g., `encodeURIComponent(tag).toLowerCase().replace(/%20/g, '-')`) when mapping dynamically generated strings with potential spaces to HTML IDs and `href` anchors to ensure robust cross-browser hash routing.
