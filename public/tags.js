@@ -35,10 +35,11 @@ function loadTags() {
       let html = '';
       for (let i = 0; i < tagsArray.length; i++) {
         const item = tagsArray[i];
-        html += '<div class="border border-stone-200 dark:border-stone-700 rounded-lg p-6 hover:border-primary/50 transition-colors">';
+        const slug = encodeURIComponent(item.tag).toLowerCase().replace(/%20/g, '-');
+        html += '<div id="tag-' + slug + '" class="scroll-mt-24 border border-stone-200 dark:border-stone-700 rounded-lg p-6 hover:border-primary/50 transition-colors">';
         html += '<div class="flex items-center justify-between mb-4">';
         html += '<h2 class="text-xl font-semibold text-stone-900 dark:text-white">';
-        html += '<a href="#tag-' + item.tag + '" class="hover:text-primary transition-colors">#' + item.tag + '</a>';
+        html += '<a href="#tag-' + slug + '" aria-label="Tag: ' + item.tag + '" class="hover:text-primary transition-colors">#' + item.tag + '</a>';
         html += '</h2>';
         html += '<span class="px-2 py-1 bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 text-sm rounded">';
         html += item.count + ' ' + (item.count === 1 ? 'page' : 'pages') + '</span>';
