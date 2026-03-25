@@ -1,0 +1,3 @@
+## 2024-03-25 - Improve PageTags accessibility and deep linking
+**Learning:** By using a `<nav aria-label="Page tags">` with aria-labeled individual tag links, screen reader users can now understand context and easily jump between tags, rather than hearing a list of disjointed "#tag" texts. Deep linking to tag pages significantly improves exploration UX, and focus-visible rings make keyboard navigation apparent.
+**Action:** When creating any list of navigation links, like tags, always wrap them in a semantic `<nav>` with an `aria-label`, ensure each link has a descriptive label if its content is brief (like "#text"), and include `focus-visible` styling using consistent design system utilities (e.g., rings and offset).
