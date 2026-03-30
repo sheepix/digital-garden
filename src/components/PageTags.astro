@@ -3,15 +3,16 @@
 // Display tags for individual pages
 ---
 
-{Astro.props.tags && Astro.props.tags.length > 0 ? (
-  <div class="page-tags mt-6 flex flex-wrap gap-2">
-    {Astro.props.tags.map(tag => (
+{Astro.props.tags && Astro.props.tags.filter(tag => tag && tag.trim()).length > 0 ? (
+  <nav aria-label="Page tags" class="page-tags mt-6 flex flex-wrap gap-2">
+    {Astro.props.tags.filter(tag => tag && tag.trim()).map(tag => (
       <a 
-        href="/tags/"
-        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-300 hover:bg-primary/10 hover:text-primary transition-colors"
+        href={`/tags/#tag-${encodeURIComponent(tag.trim()).toLowerCase().replace(/%20/g, '-')}`}
+        aria-label={`View all pages tagged with ${tag.trim()}`}
+        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-300 hover:bg-primary/10 hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:focus-visible:ring-offset-stone-900 focus-visible:ring-offset-2 transition-colors"
       >
-        #{tag}
+        #{tag.trim()}
       </a>
     ))}
-  </div>
+  </nav>
 ) : null}

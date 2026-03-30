@@ -1,0 +1,3 @@
+## 2026-03-30 - Tag Deep Linking & Accessibility
+**Learning:** Semantic `<nav>` wrapping combined with dynamic tag slugification (`id` attributes mirroring `href` hashes) dramatically improves navigation utility for tag-based discovery. When dynamically rendering anchors that are targets for deep links, applying a generous scroll margin (e.g. Tailwind's `scroll-mt-24`) is crucial to prevent the target element from being obscured by sticky headers.
+**Action:** When implementing anchor-based internal navigation or deep links, always pair the target `id` with a scroll-margin utility class and wrap collections of such links in a semantic `role="navigation"` or `<nav>` container.
