@@ -10,13 +10,16 @@ function loadTags() {
         const pageData = tagsData[slug];
         for (let i = 0; i < pageData.tags.length; i++) {
           const tag = pageData.tags[i];
-          if (!tagMap[tag]) {
-            tagMap[tag] = [];
+          if (tag && tag.trim()) {
+            const trimmedTag = tag.trim();
+            if (!tagMap[trimmedTag]) {
+              tagMap[trimmedTag] = [];
+            }
+            tagMap[trimmedTag].push({
+              slug: slug,
+              title: pageData.title || slug
+            });
           }
-          tagMap[tag].push({
-            slug: slug,
-            title: pageData.title || slug
-          });
         }
       }
       
@@ -35,10 +38,12 @@ function loadTags() {
       let html = '';
       for (let i = 0; i < tagsArray.length; i++) {
         const item = tagsArray[i];
-        html += '<div class="border border-stone-200 dark:border-stone-700 rounded-lg p-6 hover:border-primary/50 transition-colors">';
+        const slugifiedTag = encodeURIComponent(item.tag).toLowerCase().replace(/%20/g, '-');
+
+        html += '<div id="tag-' + slugifiedTag + '" class="scroll-mt-24 border border-stone-200 dark:border-stone-700 rounded-lg p-6 hover:border-primary/50 transition-colors">';
         html += '<div class="flex items-center justify-between mb-4">';
         html += '<h2 class="text-xl font-semibold text-stone-900 dark:text-white">';
-        html += '<a href="#tag-' + item.tag + '" class="hover:text-primary transition-colors">#' + item.tag + '</a>';
+        html += '<a href="#tag-' + slugifiedTag + '" aria-label="Tag ' + item.tag + '" class="hover:text-primary transition-colors focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:focus-visible:ring-offset-stone-900 focus-visible:ring-offset-2 rounded px-1 -ml-1">#' + item.tag + '</a>';
         html += '</h2>';
         html += '<span class="px-2 py-1 bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-400 text-sm rounded">';
         html += item.count + ' ' + (item.count === 1 ? 'page' : 'pages') + '</span>';
@@ -46,7 +51,7 @@ function loadTags() {
         
         for (let j = 0; j < Math.min(item.pages.length, 5); j++) {
           const page = item.pages[j];
-          html += '<a href="/' + page.slug + '" class="block text-stone-600 dark:text-stone-400 hover:text-primary dark:hover:text-primary transition-colors text-sm">• ' + page.title + '</a>';
+          html += '<a href="/' + page.slug + '" class="block text-stone-600 dark:text-stone-400 hover:text-primary dark:hover:text-primary transition-colors text-sm focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:focus-visible:ring-offset-stone-900 focus-visible:ring-offset-2 rounded px-1 -ml-1 py-0.5">• ' + page.title + '</a>';
         }
         
         if (item.pages.length > 5) {

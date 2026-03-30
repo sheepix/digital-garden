@@ -16,7 +16,10 @@ function loadTagCloud() {
         var pageData = tagsData[slug];
         for (var i = 0; i < pageData.tags.length; i++) {
           var tag = pageData.tags[i];
-          tagAggregation[tag] = (tagAggregation[tag] || 0) + 1;
+          if (tag && tag.trim()) {
+            var trimmedTag = tag.trim();
+            tagAggregation[trimmedTag] = (tagAggregation[trimmedTag] || 0) + 1;
+          }
         }
       }
       
@@ -29,11 +32,12 @@ function loadTagCloud() {
         return b[1] - a[1];
       });
       
-      var html = '<div class="flex flex-wrap gap-2">';
+      var html = '<div class="flex flex-wrap gap-2" role="navigation" aria-label="Popular tags">';
       for (var i = 0; i < sortedTags.length; i++) {
         var tag = sortedTags[i][0];
         var count = sortedTags[i][1];
-        html += '<a href="/tags/#tag-' + tag + '" class="inline-block px-2 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-primary/10 hover:text-primary transition-colors" style="font-size: ' + getTagSize(count, maxCount) + '">#' + tag + '</a>';
+        var slugifiedTag = encodeURIComponent(tag).toLowerCase().replace(/%20/g, '-');
+        html += '<a href="/tags/#tag-' + slugifiedTag + '" aria-label="' + tag + ' tag, ' + count + ' ' + (count === 1 ? 'page' : 'pages') + '" class="inline-block px-2 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-primary/10 hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:focus-visible:ring-offset-stone-900 focus-visible:ring-offset-2 transition-colors" style="font-size: ' + getTagSize(count, maxCount) + '">#' + tag + '</a>';
       }
       html += '</div>';
       
