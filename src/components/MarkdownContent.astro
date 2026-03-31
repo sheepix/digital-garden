@@ -15,7 +15,9 @@ const slug = pathname.replace(/^\//, '').replace(/\/$/, '');
 const isIndexPage = slug === '' || slug === 'index';
 
 // Get frontmatter tags from the current page
-const pageTags = Astro.props.frontmatter?.tags || [];
+const entryTags = Astro.props.entry?.data?.tags || [];
+const frontmatterTags = Astro.props.frontmatter?.tags || [];
+const pageTags = entryTags.length > 0 ? entryTags : frontmatterTags;
 ---
 
 <Default {...Astro.props}>

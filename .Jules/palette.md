@@ -1,0 +1,3 @@
+## 2025-03-31 - Semantic Tag Navigation
+**Learning:** In Astro Starlight or similar tech blogs, lists of tags are often simple collections of <a> tags inside <div> wrappers without distinct deep linking or screen reader support. Changing the wrapper to a semantic <nav aria-label="Page tags"> and ensuring descriptive aria-labels and focus-visible classes drastically improves keyboard and screen-reader navigation for tagging systems.
+**Action:** When implementing a custom tagging list component, always wrap it in a <nav aria-label="Page tags">, provide an aria-label on individual links (e.g., `View all pages tagged with X`), support deep anchor linking where applicable, and include complete focus ring styles (with dark-mode offsets) for interactive elements.
