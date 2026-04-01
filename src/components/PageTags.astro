@@ -1,17 +1,23 @@
 ---
 // src/components/PageTags.astro
 // Display tags for individual pages
+
+// Filter out empty tags
+const tags = Astro.props.tags?.filter((tag: string) => tag && tag.trim() !== '') || [];
+
+const slugify = (tag: string) => encodeURIComponent(tag).toLowerCase().replace(/%20/g, '-');
 ---
 
-{Astro.props.tags && Astro.props.tags.length > 0 ? (
-  <div class="page-tags mt-6 flex flex-wrap gap-2">
-    {Astro.props.tags.map(tag => (
+{tags.length > 0 ? (
+  <nav aria-label="Page tags" class="page-tags mt-6 flex flex-wrap gap-2">
+    {tags.map((tag: string) => (
       <a 
-        href="/tags/"
-        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-300 hover:bg-primary/10 hover:text-primary transition-colors"
+        href={`/tags/#tag-${slugify(tag.trim())}`}
+        aria-label={`Tag: ${tag.trim()}`}
+        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-300 hover:bg-primary/10 hover:text-primary focus-visible:ring-2 focus-visible:ring-primary focus-visible:outline-none dark:focus-visible:ring-offset-stone-900 focus-visible:ring-offset-2 transition-colors"
       >
-        #{tag}
+        #{tag.trim()}
       </a>
     ))}
-  </div>
+  </nav>
 ) : null}
