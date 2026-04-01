@@ -1,0 +1,3 @@
+## 2024-05-18 - Semantic Tag Navigation & Deep Linking
+**Learning:** Converting simple `<div>` tag containers to `<nav aria-label="Page tags">` significantly improves screen reader context. Furthermore, dynamically generated content like tag clouds requires robust ID generation logic. Implementing `href="/tags/#tag-{slug}"` with `focus-visible` ensures that deep links are accessible for keyboard users without adding visual clutter.
+**Action:** When creating lists of links that group similar content, use semantic `<nav>` elements. For generated elements, always apply deep-link capabilities with corresponding `id` tags in the target page, paired with `focus-visible` styling and appropriate scroll margins to clear fixed headers.
