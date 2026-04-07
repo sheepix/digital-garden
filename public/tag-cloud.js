@@ -15,7 +15,12 @@ function loadTagCloud() {
       for (var slug in tagsData) {
         var pageData = tagsData[slug];
         for (var i = 0; i < pageData.tags.length; i++) {
-          var tag = pageData.tags[i];
+          var rawTag = pageData.tags[i];
+          if (!rawTag) continue;
+
+          var tag = rawTag.trim();
+          if (!tag) continue;
+
           tagAggregation[tag] = (tagAggregation[tag] || 0) + 1;
         }
       }
@@ -33,7 +38,8 @@ function loadTagCloud() {
       for (var i = 0; i < sortedTags.length; i++) {
         var tag = sortedTags[i][0];
         var count = sortedTags[i][1];
-        html += '<a href="/tags/#tag-' + tag + '" class="inline-block px-2 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-primary/10 hover:text-primary transition-colors" style="font-size: ' + getTagSize(count, maxCount) + '">#' + tag + '</a>';
+        var tagSlug = encodeURIComponent(tag).toLowerCase().replace(/%20/g, '-');
+        html += '<a href="/tags/#tag-' + tagSlug + '" aria-label="View tag ' + tag + '" class="inline-block px-2 py-1 rounded-full bg-stone-100 dark:bg-stone-800 hover:bg-primary/10 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:focus-visible:ring-offset-stone-900" style="font-size: ' + getTagSize(count, maxCount) + '">#' + tag + '</a>';
       }
       html += '</div>';
       

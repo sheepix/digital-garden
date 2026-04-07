@@ -4,14 +4,21 @@
 ---
 
 {Astro.props.tags && Astro.props.tags.length > 0 ? (
-  <div class="page-tags mt-6 flex flex-wrap gap-2">
-    {Astro.props.tags.map(tag => (
-      <a 
-        href="/tags/"
-        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-300 hover:bg-primary/10 hover:text-primary transition-colors"
-      >
-        #{tag}
-      </a>
-    ))}
-  </div>
+  <nav aria-label="Page tags" class="page-tags mt-6 flex flex-wrap gap-2">
+    {Astro.props.tags
+      .map(t => t.trim())
+      .filter(t => t)
+      .map(tag => {
+        const slug = encodeURIComponent(tag).toLowerCase().replace(/%20/g, '-');
+        return (
+          <a
+            href={`/tags/#tag-${slug}`}
+            aria-label={`View all pages with tag ${tag}`}
+            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-300 hover:bg-primary/10 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 dark:focus-visible:ring-offset-stone-900"
+          >
+            #{tag}
+          </a>
+        );
+      })}
+  </nav>
 ) : null}
