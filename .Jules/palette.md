@@ -1,0 +1,3 @@
+## 2024-04-08 - Accessible Deep-Linked Tag Components
+**Learning:** Lists of tags (like in PageTags) need a semantic `<nav>` wrapper with an appropriate `aria-label` to provide context for screen reader users, and deep linking should ensure `href` attributes strictly mirror the anchor tag ID generation logic, while incorporating keyboard-friendly `focus-visible` states.
+**Action:** Always wrap tag collections in `<nav aria-label="...">` instead of `<div>`, strictly match slugification rules between deep link targets and anchor generation, and add `focus-visible` classes with proper ring offsets (especially handling dark mode contrast) to ensure accessible keyboard navigation.
