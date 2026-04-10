@@ -3,9 +3,10 @@
 // Simple tag cloud component
 ---
 
-<div class="tag-cloud space-y-4">
-  <h3 class="text-lg font-semibold text-stone-900 dark:text-white mb-3">Tags</h3>
+<nav aria-labelledby="tag-cloud-heading" class="tag-cloud space-y-4">
+  <h3 id="tag-cloud-heading" class="text-lg font-semibold text-stone-900 dark:text-white mb-3">Tags</h3>
   <div id="tag-cloud-content" class="flex flex-wrap gap-2">
     <!-- Tags will be loaded dynamically -->
   </div>
-</div>
+</nav>
+<script src="/tag-cloud.js" is:inline></script>
