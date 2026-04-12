@@ -1,0 +1,3 @@
+## 2026-04-12 - [Accessible Page Tags]
+**Learning:** Adding semantic markup (`<nav aria-label="...">`) and descriptive `aria-label`s directly to tag links improves context for screen reader users. Also identified that enforcing strong keyboard focus (`focus-visible:ring-2`) and deep-linking significantly enhances navigational efficiency.
+**Action:** Always wrap lists of navigational tags in a semantic `<nav>` and ensure focus states use established utility classes (`focus-visible`). Combine these with reliable tag slugification and deep linking.
