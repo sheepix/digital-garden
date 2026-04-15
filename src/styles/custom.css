@@ -376,15 +376,3 @@ li {
   }
 }
 
-/* Hide default Starlight title on homepage */
-/* We can target the specific h1 if we know the structure, but simpler to just hide the first h1 if it matches the title? */
-/* Actually, let's just let Starlight render it if it does, but we are providing our own H1 in the hero. */
-/* If Starlight renders a title, we will have two "Digital Garden" headers. */
-/* Common pattern: set title in frontmatter to space or something, or use CSS to hide .content-panel > h1:first-child */
-
-.page-title {
-    display: none !important; /* This is a guess at Starlight class */
-}
-
-/* Better approach: Starlight puts the title in a generic header. */
-/* Let's try to target it via generic selector if needed later. */
