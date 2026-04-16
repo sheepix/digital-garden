@@ -43,9 +43,9 @@ function getCategory(linkSlug: string): string {
       <ul class="backlinks-list">
         {pageBacklinks.map((link: string) => (
           <li class="backlink-item">
-            <a href={`/${link}`} class="backlink-link">
-              <span class="backlink-category">{getCategory(link)}</span>
-              <span class="backlink-title">{formatTitle(link)}</span>
+            <a href={`/${link}`} class="backlink-link" aria-label={`${getCategory(link)} ${formatTitle(link)}`.trim()}>
+              <span class="backlink-category" aria-hidden="true">{getCategory(link)}</span>
+              <span class="backlink-title" aria-hidden="true">{formatTitle(link)}</span>
             </a>
           </li>
         ))}
@@ -100,6 +100,11 @@ function getCategory(linkSlug: string): string {
     background: var(--sl-color-accent-low);
     border-color: var(--sl-color-accent);
     color: var(--sl-color-accent);
+  }
+
+  .backlink-link:focus-visible {
+    outline: 2px solid var(--sl-color-accent);
+    outline-offset: 2px;
   }
 
   .backlink-category {
