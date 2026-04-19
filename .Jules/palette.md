@@ -1,0 +1,3 @@
+## 2024-05-18 - Screen Reader Compatibility for Complex Links
+**Learning:** When interactive elements (like links) contain multiple distinct inline elements (e.g., categories and titles in `Backlinks.astro`), screen readers may read them out in a staggered, fragmented, or inconsistent manner.
+**Action:** Apply a consolidated, descriptive `aria-label` to the parent element and add `aria-hidden="true"` to its internal elements to prevent this staggered readout and ensure a clear, unified voice for the interactive component.
