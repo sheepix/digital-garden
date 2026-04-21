@@ -1,0 +1,3 @@
+## 2026-04-21 - Backlinks Screen Reader & Keyboard Focus
+**Learning:** In Astro components where links compose multiple inner text elements (like category and title spans in Backlinks.astro), screen readers can stutter or read them as staggered, disconnected elements. Furthermore, custom styled interactive links often lose their default browser focus outline, making keyboard navigation difficult.
+**Action:** Applied a consolidated `aria-label` to the parent `<a>` element and `aria-hidden="true"` to inner `<span>` elements to ensure a single, smooth readout. Also added `:focus-visible` utilizing existing CSS tokens (`var(--sl-color-accent)`) to restore clear visual feedback for keyboard users.
