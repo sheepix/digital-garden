@@ -1,0 +1,3 @@
+## 2025-02-27 - Consolidating ARIA labels for nested link elements
+**Learning:** When interactive elements like links contain multiple text elements or inline spans (e.g., categories and titles), screen readers may read them out in a staggered, disjointed, or redundant manner.
+**Action:** Consolidate the screen reader readout by adding an `aria-label` to the parent interactive element (the `<a>` tag) containing the combined text, and apply `aria-hidden="true"` to the internal child elements to prevent redundant readout. Also ensure keyboard focus states (`:focus-visible`) use existing theme CSS variables (e.g., `var(--sl-color-accent)`) for consistency.
