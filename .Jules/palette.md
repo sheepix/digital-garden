@@ -1,0 +1,3 @@
+## 2024-05-01 - Consolidate ARIA labels for compound interactive elements
+**Learning:** When interactive elements (like links or buttons) contain multiple distinct text elements (e.g., a category and a title), screen readers might announce them in a staggered or disjointed way if they are simply read sequentially.
+**Action:** Apply a consolidated, descriptive `aria-label` to the parent interactive element and use `aria-hidden="true"` on the internal decorative or split text elements to ensure a single, smooth announcement. Also, always ensure interactive elements have a clear `:focus-visible` state for keyboard navigation.
