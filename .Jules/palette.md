@@ -1,0 +1,3 @@
+## 2024-05-02 - Consolidating Complex Link Readouts
+**Learning:** When links contain multiple distinct inline elements (like a category badge and a title), screen readers may read them out in a staggered, disconnected manner. This causes a confusing user experience because the relationship between the pieces of information isn't smoothly conveyed.
+**Action:** Always consolidate complex link content by applying a unified `aria-label` to the parent `<a>` tag and using `aria-hidden="true"` on the visually distinct child elements. This ensures a fluid and logical readout while preserving the intended visual design.
