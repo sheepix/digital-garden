@@ -1,0 +1,3 @@
+## 2024-05-07 - Multi-element Link Screen Reader Output
+**Learning:** Links or interactive components containing multiple distinct inline elements (like categories and titles in `Backlinks.astro`) cause staggered and inconsistent readout by screen readers.
+**Action:** Apply a consolidated `aria-label` to the parent element and `aria-hidden="true"` to the internal elements to ensure smooth and clear readout.
