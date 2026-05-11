@@ -1,0 +1,3 @@
+## 2024-05-24 - Consolidated aria-label for Links with Multiple Internal Components
+**Learning:** When a link contains multiple internal components that are meant to be read as a single entity (like a category and title in a backlink), screen readers may read them in a staggered and inconsistent manner. Adding a consolidated `aria-label` to the parent `<a>` element and `aria-hidden="true"` to the internal child elements ensures a seamless and clear readout.
+**Action:** Always apply a consolidated `aria-label` on links with multiple distinct inline elements and use `aria-hidden="true"` on their child components to enhance accessibility for screen reader users. Also ensure interactive elements have a clear `:focus-visible` state.
