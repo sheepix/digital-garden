@@ -1,0 +1,3 @@
+## 2024-05-13 - Consolidated ARIA Labels on Multi-element Links
+**Learning:** For links or interactive components containing multiple distinct inline elements (e.g., categories and titles in `Backlinks.astro`), screen readers often read out the elements separately or in a staggered way, creating a confusing or poorly-paced experience.
+**Action:** Apply a consolidated `aria-label` to the parent `<a>` or `<button>` element that smoothly combines the information, and add `aria-hidden="true"` to the internal child elements (like `<span>`) to prevent staggered and inconsistent readout. Also, explicitly adding `:focus-visible` states to custom interactive elements improves keyboard navigation.
