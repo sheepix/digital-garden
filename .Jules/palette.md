@@ -1,0 +1,3 @@
+## 2024-05-15 - Prevent Staggered Screen Reader Readout on Compound Links
+**Learning:** Screen readers often read out individual inline text elements (like multiple spans) inside a link sequentially with pauses, leading to a disjointed and confusing auditory experience for users, particularly in UI components like categorized backlinks.
+**Action:** When a link contains multiple stylized text elements (e.g., a category span and a title span), apply a consolidated, natural-language `aria-label` to the parent `<a>` tag and add `aria-hidden="true"` to all inner visual elements to ensure a single, coherent announcement.
