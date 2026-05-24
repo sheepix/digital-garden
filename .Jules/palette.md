@@ -1,0 +1,3 @@
+## 2024-05-24 - Screen Reader Staggered Readouts on Multi-Element Links
+**Learning:** Links containing multiple distinct inline child elements (like spans) can cause screen readers to read the link contents disjointedly or stop completely between elements. Additionally, structural landmarks like `<aside>` should have an `aria-labelledby` pointing to their heading to provide context to screen reader users.
+**Action:** Consolidate screen reader context on complex links by applying a unified `aria-label` to the parent `<a>` element, and setting `aria-hidden="true"` on the inner child elements to prevent staggered reading. Always use `aria-labelledby` to associate structural tags with their heading IDs.
