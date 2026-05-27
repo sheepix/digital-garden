@@ -1,0 +1,3 @@
+## 2024-05-27 - Screen Reader Accessibility for Links and Landmarks
+**Learning:** For structural landmarks like `<aside>`, `<nav>`, or `<section>`, ensure they are properly labeled for screen readers by adding an `aria-labelledby` attribute pointing to the `id` of their inner heading element. Additionally, to prevent staggered or redundant screen reader readout for links containing multiple nested inline elements, apply a consolidated `aria-label` to the parent anchor (`<a>`) and `aria-hidden="true"` to its inner child elements.
+**Action:** Apply `aria-labelledby` to `<aside>` referencing its heading's `id`, and use unified `aria-label` on `<a>` tags while hiding inner spans with `aria-hidden="true"`.
