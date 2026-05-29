@@ -1,0 +1,3 @@
+## 2024-03-21 - Consolidated ARIA Labels for Rich Interactive Links
+**Learning:** Screen readers often stagger reading content for links containing multiple inline HTML elements (e.g., spans or divs), producing disjointed feedback (e.g., reading category, pausing, then reading title). In structural landmarks like `<aside>`, missing labeling can leave screen reader users unaware of the region's purpose.
+**Action:** Consolidate reading of rich links by adding an `aria-label` to the parent `<a>` element containing the full text, while hiding child elements using `aria-hidden="true"`. Use `<aside>` (or other correct structural elements) labeled via `aria-labelledby` pointing to the region's main heading.
