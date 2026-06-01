@@ -1,0 +1,3 @@
+## 2024-05-24 - Screen Reader Optimization for Backlinks Component
+**Learning:** Found that structural landmarks like `<aside>` need explicit `aria-labelledby` pointing to their heading for proper section identification. Additionally, links with multiple inline elements (like category and title spans) can cause a staggered, disjointed readout for screen reader users.
+**Action:** When using `<aside>`, `<nav>`, or `<section>`, ensure they are labeled by their internal heading. To prevent staggered readouts for links containing multiple inline elements, apply a consolidated `aria-label` to the parent `<a>` element and add `aria-hidden="true"` to the inner child elements.
