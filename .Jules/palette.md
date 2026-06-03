@@ -1,0 +1,4 @@
+
+## 2026-06-03 - Accessible Structural Landmarks and Redundant Link Readout Fix
+**Learning:** In Astro Starlight applications, mapping `aria-labelledby` to the internal `h3` heading inside structural landmarks like `<aside>` significantly improves orientation for screen reader users when interacting with dynamically generated components like `Backlinks`. Additionally, `getCategory()` and `formatTitle()` often create separate staggered text nodes in inline anchor loops. Using `aria-label` to group them and `aria-hidden` on the inner spans solves readout choppiness.
+**Action:** When creating structural HTML5 tags (e.g., `<aside>`, `<nav>`) in layout injections, apply an ID to their title and bind it via `aria-labelledby`. For complex internal link bodies, silence the structural children and provide a unified reading label on the `<a>` parent.
