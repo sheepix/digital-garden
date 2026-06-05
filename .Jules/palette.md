@@ -1,0 +1,3 @@
+## 2025-06-05 - Accessible Links and Landmarks
+**Learning:** Structural landmarks like `<aside>` need explicit labels (e.g., `aria-labelledby`) pointing to their inner heading. Also, links containing multiple nested inline elements (like spans) can cause screen readers to read them in a staggered or disjointed way.
+**Action:** Always add `aria-labelledby` to landmarks like `<aside>`, `<nav>`, and `<section>`. To prevent staggered readouts for links with multiple elements, add a consolidated `aria-label` to the parent `<a>` and use `aria-hidden="true"` on the child elements.
