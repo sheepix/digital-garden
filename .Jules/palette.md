@@ -1,0 +1,3 @@
+## 2024-06-07 - Prevent Staggered Screen Reader Readouts on Composite Links
+**Learning:** When a single link contains multiple structural inline elements (like a category and a title), screen readers may announce each part separately with a pause, resulting in a staggered and confusing readout for the user. Additionally, structural landmarks like `<aside>` need explicit labels for proper navigation.
+**Action:** Apply a consolidated, descriptive `aria-label` to the parent `<a>` element, and set `aria-hidden="true"` on the inner child elements to hide them from the accessibility tree, forcing a single continuous announcement. Also, label structural landmarks (e.g., `<aside>`) using `aria-labelledby` pointing to the inner heading's `id`.
