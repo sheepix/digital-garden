@@ -1,0 +1,3 @@
+## 2024-05-21 - Multi-element link readouts and landmark labeling
+**Learning:** Screen readers can have a staggered readout for links containing multiple inline elements (like spans), and structural landmarks like `<aside>` need explicit labeling.
+**Action:** Apply a consolidated `aria-label` to parent elements and `aria-hidden="true"` to inner child elements, and ensure `<aside>` elements have an `aria-labelledby` pointing to their inner heading.
