@@ -1,0 +1,3 @@
+## 2024-05-15 - Improve Screen Reader Readout for Backlinks
+**Learning:** Screen readers announce staggered or fragmented text when links contain multiple distinct styled elements (like category and title spans).
+**Action:** Apply a consolidated `aria-label` to the parent `<a>` element and `aria-hidden="true"` to its inner child elements to provide a smooth, single readout of the link's purpose. Ensure structural landmarks like `<aside>` are labeled with `aria-labelledby` pointing to their inner headings.
