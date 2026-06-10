@@ -1,0 +1,3 @@
+## 2026-06-10 - Screen reader friendly structural landmarks and links
+**Learning:** When using structural landmarks like `<aside>` or `<section>`, screen readers benefit from `aria-labelledby` pointing to the inner heading. Additionally, links containing multiple inline elements (like spans) can cause staggered readout for screen readers.
+**Action:** Apply `aria-labelledby` to `<aside>`/`<section>` tags that points to their heading `id`. Apply a consolidated `aria-label` to parent `<a>` elements and `aria-hidden="true"` to inner child elements to ensure smooth and clear readout.
