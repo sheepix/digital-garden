@@ -1,0 +1,3 @@
+## 2024-06-14 - Structural Landmarks and Inline Links Accessibility
+**Learning:** Structural landmarks like `<aside>` need explicit `aria-labelledby` referencing their heading for screen reader clarity. Furthermore, complex inline links (links with multiple span children) cause staggered readout for screen reader users.
+**Action:** Apply `aria-labelledby` to `<aside>` referencing its inner heading `id`. Apply a consolidated `aria-label` to the parent `<a>` element and `aria-hidden="true"` to inner child elements to provide a smooth, single readout of the link text.
