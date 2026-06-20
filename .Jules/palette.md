@@ -1,0 +1,3 @@
+## 2025-06-20 - Consolidated Screen Reader Readout & Focus Visibility
+**Learning:** Links with inline elements (like spans) cause staggered and disjointed readout by screen readers. Furthermore, interactive elements often lack clear keyboard focus indicators.
+**Action:** Consolidate readout by applying a single `aria-label` on the parent `<a>` and `aria-hidden="true"` on inner child elements. Ensure `:focus-visible` styles are explicitly added using theme accent colors for better keyboard navigation accessibility.
