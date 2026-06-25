@@ -1,0 +1,3 @@
+## 2024-06-25 - Accessible Landmarks and Compound Links
+**Learning:** Structural landmarks (`<aside>`, `<nav>`, `<section>`) need `aria-labelledby` pointing to their inner heading. Also, links containing multiple child elements can cause staggered screen reader readouts.
+**Action:** Always add `aria-labelledby` to landmarks, and apply a consolidated `aria-label` to the parent link while setting `aria-hidden="true"` on inner children to prevent staggered readouts.
