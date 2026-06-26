@@ -1,0 +1,3 @@
+## 2024-05-18 - Improve Backlinks Accessibility
+**Learning:** Structural landmarks like `<aside>` in Astro components need `aria-labelledby` pointing to their inner heading's `id` for proper screen reader labeling. Links with multiple inline elements (like spans) can cause staggered screen reader readout.
+**Action:** Add `aria-labelledby` to `<aside>` and `id` to the inner `<h3>`. Apply a consolidated `aria-label` to the parent `<a>` element and `aria-hidden="true"` to inner `<span>` children. Use `outline: 2px solid var(--sl-color-accent); outline-offset: 2px;` for `:focus-visible` styles to maintain theme consistency.
