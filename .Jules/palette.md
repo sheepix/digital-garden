@@ -1,0 +1,3 @@
+## 2026-06-28 - Consolidated ARIA Labels for Composite Links
+**Learning:** Links containing multiple distinct text spans can cause staggered, confusing readouts in screen readers. Additionally, structural landmarks like `<aside>` are better understood when explicitly labeled with `aria-labelledby` pointing to their inner heading.
+**Action:** Apply a consolidated `aria-label` to the parent link element and `aria-hidden="true"` to inner textual children to ensure a smooth read. Always label structural landmarks with `aria-labelledby` targeting their inner heading ID.
