@@ -38,17 +38,22 @@ function getCategory(linkSlug: string): string {
 ---
 
 {pageBacklinks.length > 0 ? (
-    <aside class="backlinks-section">
-      <h3 class="backlinks-heading">Links to this page</h3>
+    <aside aria-labelledby="backlinks-heading" class="backlinks-section">
+      <h3 id="backlinks-heading" class="backlinks-heading">Links to this page</h3>
       <ul class="backlinks-list">
-        {pageBacklinks.map((link: string) => (
-          <li class="backlink-item">
-            <a href={`/${link}`} class="backlink-link">
-              <span class="backlink-category">{getCategory(link)}</span>
-              <span class="backlink-title">{formatTitle(link)}</span>
-            </a>
-          </li>
-        ))}
+        {pageBacklinks.map((link: string) => {
+          const category = getCategory(link);
+          const title = formatTitle(link);
+          const ariaLabel = category ? `${category}: ${title}` : title;
+          return (
+            <li class="backlink-item">
+              <a href={`/${link}`} class="backlink-link" aria-label={ariaLabel}>
+                <span aria-hidden="true" class="backlink-category">{category}</span>
+                <span aria-hidden="true" class="backlink-title">{title}</span>
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </aside>
 ) : null}
