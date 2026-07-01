@@ -1,0 +1,3 @@
+## 2024-07-01 - Prevent staggered screen reader readout and structural labeling
+**Learning:** For Astro components, structural landmarks like `<aside>` need explicit `aria-labelledby` pointing to their inner heading's id. Also, links containing multiple inline elements (like category and title spans) cause staggered readout unless the parent receives a consolidated `aria-label` and inner elements receive `aria-hidden="true"`.
+**Action:** Apply `aria-labelledby` to landmarks like `<aside>` and consolidated `aria-label` to complex links while hiding their children from screen readers. Use variables like `var(--sl-color-accent)` for consistent `:focus-visible` styling.
