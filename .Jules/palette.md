@@ -1,0 +1,3 @@
+## 2024-07-02 - Consolidated ARIA labels and landmark labelling
+**Learning:** To prevent staggered screen reader readout for links containing multiple inline elements (like category and title spans), apply a consolidated `aria-label` to the parent anchor and `aria-hidden="true"` to the inner child elements. For structural landmarks like `<aside>`, ensure they are properly labeled by adding an `aria-labelledby` attribute that points to the `id` of their inner heading element.
+**Action:** Always apply consolidated ARIA labels on parent links with multiple children to ensure smooth readout, and label landmarks using internal headings.
