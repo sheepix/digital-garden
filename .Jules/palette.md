@@ -1,0 +1,3 @@
+## 2024-07-04 - Improve Backlinks Accessibility
+**Learning:** Structural landmarks in Astro components need `aria-labelledby` pointing to their heading for better screen reader context. Consolidating `aria-label` on links with multiple inner span elements prevents staggered readout, while `aria-hidden="true"` should be applied to the children. Custom focus states must use `focus-visible` with theme variables like `var(--sl-color-accent)` for consistent styling.
+**Action:** Always add `aria-labelledby` to `<aside>` or `<nav>` referencing an inner heading `id`. Use consolidated `aria-label` on links wrapping multiple text elements, hiding the children from screen readers. Explicitly define `:focus-visible` styles with correct offset.
