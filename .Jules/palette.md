@@ -1,0 +1,3 @@
+## 2024-07-05 - Improving Structural Landmarks and Screen Reader Experience
+**Learning:** Found an accessibility issue pattern in custom Astro components: missing `aria-labelledby` on `<aside>` landmarks, staggered screen reader readout from multiple nested elements within links, and missing `:focus-visible` styles for keyboard navigation.
+**Action:** When creating structural landmarks like `<aside>`, ensure they are labeled by their inner heading. Combine link labels into a single `aria-label` and hide inner children with `aria-hidden="true"`. Always implement `:focus-visible` using `var(--sl-color-accent)` for clear keyboard focus indication.
