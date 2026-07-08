@@ -1,0 +1,3 @@
+## 2024-07-08 - Accessible Structural Landmarks and Consolidated Link Readouts
+**Learning:** Structural landmarks like `<aside>` need explicit `aria-labelledby` referencing inner heading IDs, and links containing multiple inline elements can cause staggered, disjointed screen reader announcements if their text isn't consolidated.
+**Action:** When using `<aside>` or `<nav>`, always add `aria-labelledby` linked to the section's heading `id`. For compound link contents (like a category + title span), apply a consolidated descriptive `aria-label` to the parent `<a>` and `aria-hidden="true"` to inner decorative or redundant child elements.
