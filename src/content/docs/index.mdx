@@ -1,184 +1,35 @@
 ---
-title: Digital Garden
-description: Notes, essays, and experiments for continuous learning.
+title: 数字花园
+description: 未完成的思考、随手记的知识、还在长的笔记。
 template: splash
+hero:
+  tagline: 一个持续生长的地方 —— 笔记不是文章，是把想法种下来。
+  actions:
+    - text: 开始逛逛
+      link: /garden/
+      icon: right-arrow
+      variant: primary
+    - text: 花园说明
+      link: /about/
+      icon: document
+      variant: minimal
 tableOfContents: false
 ---
 
-<div className="flex flex-col min-h-screen">
-	{/* Hero Section */}
-	<section className="max-w-2xl mx-auto text-center py-12 sm:py-20 mb-12">
-		<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/5 dark:bg-primary/10 border border-primary/10 dark:border-primary/20 text-xs font-medium text-stone-600 dark:text-stone-300 mb-6 animate-fade-in-up">
-			<span className="flex h-2 w-2 relative">
-				<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-				<span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-			</span>
-			Garden actively cultivated
-		</div>
-		<h1 className="text-4xl sm:text-5xl font-extrabold text-stone-900 dark:text-white tracking-tight mb-6 leading-tight !mt-0">
-		</h1>
-		<p className="text-lg text-stone-600 dark:text-stone-400 mb-10 leading-relaxed max-w-lg mx-auto">
-			Notes, essays, and experiments for continuous learning. A collection of thoughts on software engineering, design systems, and personal growth.
-		</p>
-		<div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-			<a className="w-full sm:w-auto px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-indigo-600 text-white font-medium hover:opacity-90 transition-opacity shadow-lg shadow-primary/20 flex items-center justify-center gap-2 !no-underline" href="/wiki/">
-				<span className="material-symbols-outlined text-[20px]">explore</span>
-				Explore Wiki
-			</a>
-			<a className="w-full sm:w-auto px-6 py-3 rounded-lg bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 text-stone-700 dark:text-stone-200 font-medium hover:bg-stone-50 dark:hover:bg-stone-700 transition-colors flex items-center justify-center gap-2 !no-underline" href="/stream/">
-				<span className="material-symbols-outlined text-[20px]">update</span>
-				Latest Updates
-			</a>
-		</div>
-	</section>
+import { Card, CardGrid } from '@astrojs/starlight/components';
 
-	{/* Latest from Garden Intro */}
-	<section className="mb-12">
-		<div className="flex items-center gap-4 mb-6">
-			<h2 className="text-2xl font-bold text-stone-900 dark:text-white tracking-tight !mt-0">Latest from the Garden</h2>
-			<div className="h-px flex-1 bg-stone-200 dark:bg-stone-800"></div>
-		</div>
-		<p className="text-stone-600 dark:text-stone-400 mb-8 max-w-3xl">
-			Exploring engineering patterns, tooling experiments, and deep dives into the ecosystem. Here is what has been growing recently.
-		</p>
+## 这里有什么？
 
-		{/* Featured Card */}
-		<div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-stone-50 to-stone-100 dark:from-stone-800/40 dark:to-stone-900/40 border border-stone-200 dark:border-stone-700 p-1 group hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 mb-10">
-			<div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
-				<span className="material-symbols-outlined text-[120px] text-stone-400 dark:text-stone-500 transform rotate-12 select-none">local_florist</span>
-			</div>
-			<div className="relative bg-white dark:bg-stone-900 rounded-lg p-6 sm:p-8">
-				<div className="flex items-center gap-2 mb-4">
-					<span className="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary border border-primary/20">
-						Featured
-					</span>
-					<span className="text-xs text-stone-400">•</span>
-					<span className="text-xs font-medium text-stone-500 uppercase tracking-wider">Wiki</span>
-				</div>
-				<a className="block group-hover:text-primary transition-colors !no-underline" href="/wiki/llm/llm-coding-comparison-2026/">
-					<h3 className="text-2xl font-bold text-stone-900 dark:text-white mb-3 !mt-0">
-						2026 国产 LLM Coding Plan 深度对比报告
-					</h3>
-				</a>
-				<p className="text-stone-600 dark:text-stone-400 mb-6 line-clamp-2">
-					An in-depth comparison of domestic Large Language Models focused on coding capabilities. Benchmarking latency, context window accuracy, and integration with modern IDEs like VS Code and Cursor.
-				</p>
-				<div className="flex items-center gap-4 text-sm text-stone-500 dark:text-stone-400">
-					<div className="flex items-center gap-1">
-						<span className="material-symbols-outlined text-[16px]">calendar_today</span>
-						<span>Feb 14, 2026</span>
-					</div>
-					<div className="flex items-center gap-1">
-						<span className="material-symbols-outlined text-[16px]">schedule</span>
-						<span>12 min read</span>
-					</div>
-				</div>
-			</div>
-		</div>
+<CardGrid>
+  <Card title="笔记" icon="pen">
+    从 Obsidian 里同步过来的半成品想法、概念梳理和学习记录。
+  </Card>
+  <Card title="双向链接" icon="random">
+    笔记之间用 `[[wikilink]]` 互相连接，逛到哪算哪。
+  </Card>
+  <Card title="持续更新" icon="rocket">
+    打上 `digital-garden` 标签的笔记会自动进入花园。
+  </Card>
+</CardGrid>
 
-		{/* Recent Posts List */}
-		<div className="space-y-4">
-			<a className="block group p-4 -mx-4 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800/50 transition-colors !no-underline" href="/wiki/">
-				<div className="flex flex-col gap-1 mb-1">
-					<div className="flex items-center gap-2 text-xs font-mono text-stone-500 dark:text-stone-400 mb-1">
-						<span className="px-1.5 py-0.5 rounded bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300">Engineering</span>
-						<span className="text-stone-300 dark:text-stone-600">•</span>
-						<span>Feb 10, 2026</span>
-					</div>
-					<h4 className="text-lg font-semibold text-stone-800 dark:text-stone-200 group-hover:text-primary transition-colors !mt-0">
-						Migrating to Astro Starlight: A Retro
-					</h4>
-				</div>
-				<p className="text-sm text-stone-500 dark:text-stone-400 line-clamp-1">
-					Lessons learned moving from a custom Next.js setup to a content-focused framework.
-				</p>
-			</a>
-			<div className="h-px bg-stone-100 dark:bg-stone-800/50 mx-4"></div>
-			<a className="block group p-4 -mx-4 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800/50 transition-colors !no-underline" href="/wiki/design/">
-				<div className="flex flex-col gap-1 mb-1">
-					<div className="flex items-center gap-2 text-xs font-mono text-stone-500 dark:text-stone-400 mb-1">
-						<span className="px-1.5 py-0.5 rounded bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300">Design</span>
-						<span className="text-stone-300 dark:text-stone-600">•</span>
-						<span>Jan 28, 2026</span>
-					</div>
-					<h4 className="text-lg font-semibold text-stone-800 dark:text-stone-200 group-hover:text-primary transition-colors !mt-0">
-						The Psychology of Color in Data Viz
-					</h4>
-				</div>
-				<p className="text-sm text-stone-500 dark:text-stone-400 line-clamp-1">
-					How hue and saturation affect decision making in dashboards.
-				</p>
-			</a>
-			<div className="h-px bg-stone-100 dark:bg-stone-800/50 mx-4"></div>
-			<a className="block group p-4 -mx-4 rounded-xl hover:bg-stone-100 dark:hover:bg-stone-800/50 transition-colors !no-underline" href="/stream/">
-				<div className="flex flex-col gap-1 mb-1">
-					<div className="flex items-center gap-2 text-xs font-mono text-stone-500 dark:text-stone-400 mb-1">
-						<span className="px-1.5 py-0.5 rounded bg-stone-200 dark:bg-stone-700 text-stone-600 dark:text-stone-300">Stream</span>
-						<span className="text-stone-300 dark:text-stone-600">•</span>
-						<span>Rolling</span>
-					</div>
-					<h4 className="text-lg font-semibold text-stone-800 dark:text-stone-200 group-hover:text-primary transition-colors !mt-0">
-						Weekly Stream: Rolling Updates
-					</h4>
-				</div>
-				<p className="text-sm text-stone-500 dark:text-stone-400 line-clamp-1">
-					Quick links, tweets, and thoughts from the past week.
-				</p>
-			</a>
-		</div>
-	</section>
-
-	{/* Topics Grid */}
-	<section className="mb-20">
-		<div className="flex items-center gap-4 mb-8">
-			<h2 className="text-xl font-bold text-stone-900 dark:text-white tracking-tight !mt-0">Explore by Topic</h2>
-			<div className="h-px flex-1 bg-stone-200 dark:bg-stone-800"></div>
-		</div>
-		<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-			{/* Topic Card 1 */}
-			<a className="group relative flex flex-col p-6 bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl hover:shadow-md hover:border-primary/30 transition-all !no-underline" href="/wiki/">
-				<div className="size-10 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-4">
-					<span className="material-symbols-outlined">code</span>
-				</div>
-				<h3 className="text-lg font-semibold text-stone-900 dark:text-white mb-2 !mt-0">Engineering</h3>
-				<p className="text-sm text-stone-500 dark:text-stone-400 flex-1">
-					Software architecture, coding patterns, and devops.
-				</p>
-				<div className="mt-4 flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0 duration-300">
-					Open <span className="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
-				</div>
-			</a>
-			{/* Topic Card 2 */}
-			<a className="group relative flex flex-col p-6 bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl hover:shadow-md hover:border-primary/30 transition-all !no-underline" href="/stream/">
-				<div className="size-10 rounded-lg bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-4">
-					<span className="material-symbols-outlined">psychology</span>
-				</div>
-				<h3 className="text-lg font-semibold text-stone-900 dark:text-white mb-2 !mt-0">Thinking</h3>
-				<p className="text-sm text-stone-500 dark:text-stone-400 flex-1">
-					Mental models, productivity, and learning strategies.
-				</p>
-				<div className="mt-4 flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0 duration-300">
-					Open <span className="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
-				</div>
-			</a>
-			{/* Topic Card 3 */}
-			<a className="group relative flex flex-col p-6 bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl hover:shadow-md hover:border-primary/30 transition-all !no-underline" href="/meta/">
-				<div className="size-10 rounded-lg bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 flex items-center justify-center mb-4">
-					<span className="material-symbols-outlined">hub</span>
-				</div>
-				<h3 className="text-lg font-semibold text-stone-900 dark:text-white mb-2 !mt-0">System</h3>
-				<p className="text-sm text-stone-500 dark:text-stone-400 flex-1">
-					Workflow automation, tools, and personal infrastructure.
-				</p>
-				<div className="mt-4 flex items-center text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-10px] group-hover:translate-x-0 duration-300">
-					Open <span className="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
-				</div>
-			</a>
-		</div>
-	</section>
-
-	<div class="text-center text-sm text-stone-500 dark:text-stone-400 mt-8">
-		<p>Built with Astro + Starlight. Designed with Modern Minimalism.</p>
-		<p>Version 2.4.9</p>
-	</div>
-</div>
+花园不是博客，它更像一块试验田：内容会长、会改，也可能会死掉。

@@ -1,0 +1,32 @@
+name: Deploy Garden
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+      # 如需由 GitHub 直接发布到 Cloudflare Pages，配置以下 secrets 后启用：
+      #   CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_PROJECT_NAME
+      - name: Deploy to Cloudflare Pages
+        if: ${{ env.CF_ENABLED == 'true' }}
+        env:
+          CF_ENABLED: ${{ secrets.CLOUDFLARE_API_TOKEN != '' }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler pages deploy dist --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME || 'digital-garden' }} --branch=main
