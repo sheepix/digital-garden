@@ -1,0 +1,52 @@
+---
+// src/components/JournalNotes.astro
+// 首页「最近生长的笔记」便签卡片列表，数据来自 garden/ 真实笔记
+import { getGardenNotes } from '../lib/garden-notes';
+
+interface Props {
+  limit?: number;
+  heading?: string;
+  eyebrow?: string;
+}
+
+const { limit = 8, heading = '最近生长的笔记', eyebrow } = Astro.props;
+const notes = await getGardenNotes(limit);
+const isPlaceholder = notes.length > 0 && notes.every((n) => n.placeholder);
+const label = eyebrow ?? `Index · ${notes.length}`;
+---
+
+<div class="journal-home">
+  <section class="j-sec" id="notes">
+    <div class="j-sec-head">
+      <h2>{heading}</h2>
+      <span class="dash"></span>
+      <span class="en">{label}</span>
+    </div>
+
+    {isPlaceholder && (
+      <p class="notes-hint">花园里还没有笔记，下面是同步过来的第一篇笔记将要长成的样子。</p>
+    )}
+
+    <div class="notes">
+      {notes.map((note) => (
+        <article class="entry rise">
+          <div class="top">
+            <span class="date">{note.date}</span>
+            <span class="pin"></span>
+          </div>
+          <h3>
+            <a href={note.url}>{note.title}</a>
+          </h3>
+          {note.description && <p class="ex">{note.description}</p>}
+          {note.tags.length > 0 && (
+            <div class="tags">
+              {note.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+</div>

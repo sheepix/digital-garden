@@ -1,0 +1,78 @@
+---
+// 标签索引页：按标签聚集花园里的笔记，样式沿用全局手账风。
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { getCollection } from 'astro:content';
+
+const entries = await getCollection(
+  'docs',
+  (entry) => entry.id.startsWith('garden/') && !/(^|\/)index\.mdx?$/.test(entry.id)
+);
+
+const anchorOf = (tag: string) =>
+  tag
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '-');
+
+const groups = new Map<string, { slug: string; title: string }[]>();
+
+for (const entry of entries) {
+  const rawTags = entry.data.tags ?? [];
+  const tags = Array.isArray(rawTags) ? rawTags : [rawTags];
+  for (const tag of tags) {
+    if (!tag) continue;
+    const key = tag.toString();
+    const list = groups.get(key) ?? [];
+    list.push({
+      slug: entry.id.replace(/\.mdx?$/, ''),
+      title: (entry.data.title ?? entry.id).toString(),
+    });
+    groups.set(key, list);
+  }
+}
+
+const tags = [...groups.keys()].sort((a, b) => a.localeCompare(b, 'zh-Hans-CN'));
+---
+
+<StarlightPage
+  frontmatter={{
+    title: '标签',
+    description: '按标签翻阅这座花园里的笔记。',
+  }}
+>
+  <div class="tags-page">
+    <p class="tags-intro">
+      每张便签背面都贴着一张标签。挑一张，顺着标签把相关的想法串起来。
+    </p>
+
+    {
+      tags.length === 0 ? (
+        <p class="tags-empty">还没有笔记贴标签，先去花园里写点什么吧。</p>
+      ) : (
+        <div class="tags-cloud">
+          {tags.map((tag) => (
+            <a class="page-tag" href={`#${anchorOf(tag)}`}>
+              #{tag}
+              <span class="tag-count">{groups.get(tag)?.length ?? 0}</span>
+            </a>
+          ))}
+        </div>
+      )
+    }
+
+    {
+      tags.map((tag) => (
+        <section class="tag-group" id={anchorOf(tag)}>
+          <h2 class="tag-group-title">#{tag}</h2>
+          <ul class="tag-group-list">
+            {(groups.get(tag) ?? []).map((note) => (
+              <li>
+                <a href={`/${note.slug}/`}>{note.title}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</StarlightPage>

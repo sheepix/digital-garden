@@ -1,17 +1,28 @@
 ---
 // src/components/PageTags.astro
-// Display tags for individual pages
+// 便签风格的标签胶囊，点击跳到标签索引页对应锚点。
+interface Props {
+  tags?: string[];
+}
+
+const { tags = [] } = Astro.props;
+
+const anchorOf = (tag: string) =>
+  tag
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, '-');
 ---
 
-{Astro.props.tags && Astro.props.tags.length > 0 ? (
-  <div class="page-tags mt-6 flex flex-wrap gap-2">
-    {Astro.props.tags.map(tag => (
-      <a 
-        href="/tags/"
-        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-300 hover:bg-primary/10 hover:text-primary transition-colors"
-      >
-        #{tag}
-      </a>
-    ))}
-  </div>
-) : null}
+{
+  tags.length > 0 && (
+    <div class="page-tags">
+      <span class="page-tags-label">贴纸</span>
+      {tags.map((tag) => (
+        <a class="page-tag" href={`/tags/#${anchorOf(tag)}`}>
+          #{tag}
+        </a>
+      ))}
+    </div>
+  )
+}

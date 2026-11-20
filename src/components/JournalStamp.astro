@@ -1,0 +1,24 @@
+---
+// src/components/JournalStamp.astro
+// 首页手账印章：笔记篇数 + 最后更新时间（数据来自真实内容集合）
+import { getGardenNotes, formatJournalDate } from '../lib/garden-notes';
+
+const notes = await getGardenNotes(60);
+const real = notes.filter((n) => !n.placeholder);
+const count = real.length;
+
+let lastUpdated = '';
+if (count > 0) {
+  const latest = [...real].sort((a, b) => (a.date < b.date ? 1 : -1))[0];
+  lastUpdated = latest?.date || '';
+} else {
+  lastUpdated = formatJournalDate(new Date());
+}
+---
+
+<div class="stamp-row">
+  <span class="stamp">{count} 篇<br />笔记</span>
+  <span class="stamp-note">
+    {count > 0 ? `最后更新 · ${lastUpdated}` : '等待第一篇笔记落地'}
+  </span>
+</div>

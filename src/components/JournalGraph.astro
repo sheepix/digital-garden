@@ -1,0 +1,80 @@
+---
+// src/components/JournalGraph.astro
+// 首页「手绘关系图」氛围区：节点标签取自真实笔记标题，用虚线手工表示 wikilink 关系
+import { getGardenNotes } from '../lib/garden-notes';
+
+const notes = await getGardenNotes(6);
+
+const short = (text: string, max = 6) =>
+  text.length > max ? `${text.slice(0, max)}…` : text;
+
+const labels = notes.map((n) => short(n.title));
+
+// 节点坐标（围绕中心，稍作偏移以显手工感）
+const nodes = [
+  { x: 76, y: 62 },
+  { x: 196, y: 46 },
+  { x: 312, y: 78 },
+  { x: 60, y: 218 },
+  { x: 200, y: 250 },
+  { x: 322, y: 208 },
+];
+
+const center = { x: 200, y: 152 };
+---
+
+<section class="j-sec" id="graph">
+  <div class="j-sec-head">
+    <h2>想法之间</h2>
+    <span class="dash"></span>
+    <span class="en">Graph</span>
+  </div>
+
+  <div class="graph">
+    <svg viewBox="0 0 400 300" role="img" aria-label="手绘笔记关系图示意">
+      <g>
+        {
+          nodes.map((n, i) => (
+            <path
+              class="lnk"
+              d={`M${center.x},${center.y} Q${(center.x + n.x) / 2 + (i % 2 === 0 ? 12 : -12)},${(center.y + n.y) / 2} ${n.x},${n.y}`}
+            />
+          ))
+        }
+      </g>
+      {
+        nodes.map((n) => (
+          <circle class="nd" cx={n.x} cy={n.y} r="7.5" />
+        ))
+      }
+      <circle class="nd c" cx={center.x} cy={center.y} r="20" />
+      <text class="lbl" x={center.x} y={center.y + 4} text-anchor="middle" fill="var(--paper-2)">
+        中心
+      </text>
+      {
+        nodes.map((n, i) => (
+          <text
+            class="lbl"
+            x={n.x}
+            y={n.y - 14}
+            text-anchor="middle"
+            fill="var(--ink-2)"
+          >
+            {labels[i] ?? '新想法'}
+          </text>
+        ))
+      }
+    </svg>
+
+    <div class="graph-copy">
+      <p>
+        每篇笔记只负责一件事：把想法钉在一个可以指的位置。之后用
+        <span class="hl">[[ ]]</span>
+        把它们互相连起来，孤岛就会慢慢长出枝干。
+      </p>
+      <p>
+        这张图不是装饰 —— 它在提醒我，哪些想法还悬在外面，没有落进任何一条线。
+      </p>
+    </div>
+  </div>
+</section>

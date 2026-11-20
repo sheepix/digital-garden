@@ -1,119 +1,92 @@
 ---
 // src/components/Backlinks.astro
-// Backlinks display component - minimal and visually consistent with the theme
-import backlinksData from '../data/backlinks.json';
+// 构建时从内容集合实时计算反向链接：扫描每篇笔记正文里的 [[wikilink]]，
+// 按标题或文件名匹配到当前页面，避免依赖可能过期的静态 JSON。
+import { getCollection } from 'astro:content';
 
 interface Props {
   slug?: string;
+  title?: string;
 }
 
-const { slug = '' } = Astro.props;
+const { slug = '', title = '' } = Astro.props;
 
-// Normalize slug - try both with and without /index
-// URL /stream/ -> slug "stream" but backlinks are stored as "stream/index"
-let pageBacklinks = backlinksData[slug] || [];
+const entries = await getCollection('docs');
 
-// Also try with /index suffix for root pages
-if (pageBacklinks.length === 0 && !slug.endsWith('/index')) {
-  pageBacklinks = backlinksData[`${slug}/index`] || [];
-}
+const normalize = (value: string) =>
+  value
+    .trim()
+    .toLowerCase()
+    .replace(/\.mdx?$/, '')
+    .replace(/[\s_]+/g, '-');
 
-// Format slug to readable title
-function formatTitle(linkSlug: string): string {
-  const parts = linkSlug.split('/');
-  const lastPart = parts[parts.length - 1];
-  return lastPart
-    .replace(/-/g, ' ')
-    .replace(/\b\w/g, c => c.toUpperCase());
-}
+const stripSlash = (value: string) => value.replace(/^\/+/, '').replace(/\/+$/, '');
 
-// Get category from slug
-function getCategory(linkSlug: string): string {
-  const parts = linkSlug.split('/');
-  if (parts.length > 1) {
-    return parts[0];
+const pageSlug = stripSlash(slug);
+const pageTitle = title.trim().toLowerCase();
+
+// 归一化到「slug」的映射表：slug 与标题都能命中同一篇笔记
+const resolveTarget = (raw: string) => {
+  const target = raw.trim();
+  const lowered = target.toLowerCase();
+  for (const entry of entries) {
+    const entrySlug = entry.id.replace(/\.mdx?$/, '');
+    const entryTitle = (entry.data.title ?? '').toString();
+    if (entrySlug.toLowerCase() === lowered || entryTitle.toLowerCase() === lowered) return entrySlug;
+    if (normalize(entrySlug) === normalize(target) || normalize(entryTitle) === normalize(target)) return entrySlug;
   }
-  return '';
+  return null;
+};
+
+interface BackRef {
+  slug: string;
+  title: string;
+}
+
+const backlinks: BackRef[] = [];
+
+for (const entry of entries) {
+  const entrySlug = entry.id.replace(/\.mdx?$/, '');
+  const body = entry.body ?? '';
+  const matchesCurrent = pageTitle
+    ? entrySlug.toLowerCase() === pageSlug.toLowerCase() || (entry.data.title ?? '').toString().toLowerCase() === pageTitle
+    : entrySlug.toLowerCase() === pageSlug.toLowerCase();
+  if (!matchesCurrent) continue;
+
+  for (const other of entries) {
+    if (other.id === entry.id) continue;
+    const otherBody = other.body ?? '';
+    const links = [...otherBody.matchAll(/\[\[([^\]|#]+)(?:[|#][^\]]*)?\]\]/g)].map((m) => m[1]);
+    if (links.some((link) => resolveTarget(link) === entrySlug)) {
+      const otherSlug = other.id.replace(/\.mdx?$/, '');
+      if (!backlinks.some((item) => item.slug === otherSlug)) {
+        backlinks.push({
+          slug: otherSlug,
+          title: (other.data.title ?? otherSlug).toString(),
+        });
+      }
+    }
+  }
+  break;
 }
 ---
 
-{pageBacklinks.length > 0 ? (
+{
+  backlinks.length > 0 && (
     <aside class="backlinks-section">
-      <h3 class="backlinks-heading">Links to this page</h3>
+      <h3 class="backlinks-heading">
+        这些笔记指向这里<span class="backlinks-count">{backlinks.length}</span>
+      </h3>
       <ul class="backlinks-list">
-        {pageBacklinks.map((link: string) => (
+        {backlinks.map((link) => (
           <li class="backlink-item">
-            <a href={`/${link}`} class="backlink-link">
-              <span class="backlink-category">{getCategory(link)}</span>
-              <span class="backlink-title">{formatTitle(link)}</span>
+            <a href={`/${link.slug}/`} class="backlink-link">
+              <span class="backlink-pin" aria-hidden="true" />
+              <span class="backlink-title">{link.title}</span>
             </a>
           </li>
         ))}
       </ul>
     </aside>
-) : null}
-
-<style>
-  .backlinks-section {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--sl-color-gray-6);
-  }
-
-  .backlinks-heading {
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--sl-color-gray-4);
-    margin-bottom: 1rem;
-  }
-
-  .backlinks-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .backlink-item {
-    margin: 0;
-  }
-
-  .backlink-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.375rem 0.75rem;
-    background: var(--sl-color-gray-7);
-    border: 1px solid var(--sl-color-gray-6);
-    border-radius: 0.375rem;
-    font-size: 0.875rem;
-    color: var(--sl-color-gray-2);
-    text-decoration: none;
-    transition: all 0.15s ease;
-  }
-
-  .backlink-link:hover {
-    background: var(--sl-color-accent-low);
-    border-color: var(--sl-color-accent);
-    color: var(--sl-color-accent);
-  }
-
-  .backlink-category {
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-transform: capitalize;
-    color: var(--sl-color-gray-4);
-  }
-
-  .backlink-link:hover .backlink-category {
-    color: var(--sl-color-accent);
-  }
-
-  .backlink-title {
-    font-weight: 500;
-  }
-</style>
+  )
+}

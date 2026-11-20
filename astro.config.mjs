@@ -15,8 +15,14 @@ export default defineConfig({
 			description: '数字花园：随手记录的思考、知识与半成品。',
 			logo: { src: './src/assets/logo.svg' },
 			customCss: ['./src/styles/custom.css'],
+			components: {
+				MarkdownContent: './src/components/MarkdownContent.astro',
+			},
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/sheepix/digital-garden' }],
-			sidebar: [{ label: '笔记', autogenerate: { directory: 'garden' } }],
+			sidebar: [
+				{ label: '笔记', autogenerate: { directory: 'garden' } },
+				{ label: '标签', link: '/tags/' },
+			],
 			editLink: { baseUrl: 'https://github.com/sheepix/digital-garden/edit/main/' },
 			pagination: false,
 			lastUpdated: true,

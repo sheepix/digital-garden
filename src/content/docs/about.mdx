@@ -1,0 +1,58 @@
+---
+title: 关于这座花园
+description: 这座数字花园是什么、怎么来的、怎么逛。
+---
+
+把 Obsidian 里打了 `digital-garden` 标签的笔记，同步成一个公开可读的站点。区别于正式文章，这里的笔记可能是半成品、碎片，会不断被修改。
+
+<div class="j-quote">
+  <p>“写作的目的不是发布，是把还没想清楚的事情，逼到一个能看见的位置。”</p>
+  <span class="who">— 建站那天写在第一页的话</span>
+</div>
+
+## 怎么逛
+
+<div class="idx-grid">
+  <div class="idx-card">
+    <h4>三种入口</h4>
+    <ul>
+      <li>左侧目录：按同步过来的文件夹层级浏览</li>
+      <li>笔记正文：顺着双向链接跳到相关笔记</li>
+      <li>页面底部：标签与反向链接，顺藤摸瓜</li>
+    </ul>
+  </div>
+  <div class="idx-card">
+    <h4>关于链接</h4>
+    <ul>
+      <li>笔记里写 <code>{'[[ ]]'}</code> 即成站内链接</li>
+      <li>被链接的笔记会自动出现在反链区</li>
+      <li>没有目标的链接保持原样，等以后的自己补</li>
+    </ul>
+  </div>
+  <div class="idx-card">
+    <h4>关于更新</h4>
+    <ul>
+      <li>旧笔记会被直接改写，不保留版本</li>
+      <li>修改时间贴在每篇页脚</li>
+      <li>没有发布时间表，笔记按生长排序</li>
+    </ul>
+  </div>
+</div>
+
+## 怎么更新
+
+在 Obsidian 笔记的 frontmatter 里加上标签 `tags: [digital-garden]`，然后本地拉取、提交，站点会自动重新构建。
+
+<div class="flow">
+  <span class="s">Obsidian 笔记</span>
+  <span class="ar">→</span>
+  <span class="s">npm run sync</span>
+  <span class="ar">→</span>
+  <span class="s">wikilink / 附件处理</span>
+  <span class="ar">→</span>
+  <span class="s">git push</span>
+  <span class="ar">→</span>
+  <span class="s">自动构建上线</span>
+</div>
+
+<div class="sign">— 这座花园由 Obsidian 与 Astro 一起养着</div>

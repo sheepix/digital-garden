@@ -1,35 +1,63 @@
 ---
-title: 数字花园
-description: 未完成的思考、随手记的知识、还在长的笔记。
+title: Sheepx's Garden
+description: 一个持续生长的地方 —— 笔记不是文章，是把想法种下来。
 template: splash
 hero:
-  tagline: 一个持续生长的地方 —— 笔记不是文章，是把想法种下来。
+  title: 'Sheepx&apos;s <span class="u">Garden</span>'
+  tagline: '<span class="j-sub">数字花园 · DIGITAL GARDEN</span><span class="j-tag">一个持续生长的地方 —— <span class="soft">笔记不是文章，是把想法种下来。</span></span>'
   actions:
     - text: 开始逛逛
       link: /garden/
       icon: right-arrow
       variant: primary
-    - text: 花园说明
+    - text: 这座花园怎么来的
       link: /about/
-      icon: document
       variant: minimal
-tableOfContents: false
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import JournalStamp from '../../components/JournalStamp.astro';
+import JournalNotes from '../../components/JournalNotes.astro';
+import JournalGraph from '../../components/JournalGraph.astro';
 
-## 这里有什么？
+<div class="journal-home">
+  <JournalStamp />
+</div>
 
-<CardGrid>
-  <Card title="笔记" icon="pen">
-    从 Obsidian 里同步过来的半成品想法、概念梳理和学习记录。
-  </Card>
-  <Card title="双向链接" icon="random">
-    笔记之间用 `[[wikilink]]` 互相连接，逛到哪算哪。
-  </Card>
-  <Card title="持续更新" icon="rocket">
-    打上 `digital-garden` 标签的笔记会自动进入花园。
-  </Card>
-</CardGrid>
+<div class="j-sec">
+  <div class="j-sec-head">
+    <h2>这座花园怎么运转</h2>
+    <span class="dash"></span>
+    <span class="en">How it works</span>
+  </div>
 
-花园不是博客，它更像一块试验田：内容会长、会改，也可能会死掉。
+  <div class="cards3">
+    <div class="note-card">
+      <span class="num">01</span>
+      <h3>笔记</h3>
+      <p>一篇笔记只长一件事：一个还没被说清的想法。短、可改、允许停在半路。</p>
+    </div>
+    <div class="note-card">
+      <span class="num">02</span>
+      <h3>双向链接</h3>
+      <p>
+        用 <code>{'[[另一篇笔记]]'}</code> 把笔记接起来。关系长在正文里，不靠文件夹；每篇底部会自动列出谁提到过它。
+      </p>
+    </div>
+    <div class="note-card">
+      <span class="num">03</span>
+      <h3>持续更新</h3>
+      <p>没有发布时间表。旧的会被改写，错的会被划掉 —— 所以每篇下面都留着 Last updated。</p>
+    </div>
+  </div>
+</div>
+
+<div class="j-quote">
+  <p>“先种下去，再谈好看。花园是养出来的，不是设计出来的。”</p>
+  <span class="who">— 试验田第一行字</span>
+</div>
+
+<JournalNotes limit={8} heading="最近生长的笔记" />
+
+<JournalGraph />
+
+<div class="sign">— Sheepx，一个还在学着记录的人</div>
