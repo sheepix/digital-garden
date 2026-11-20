@@ -1,5 +1,63 @@
 {
-  "generatedAt": "2026-11-19T15:24:02.994Z",
-  "count": 0,
-  "notes": []
+  "generatedAt": "2026-11-20T09:56:05.219Z",
+  "count": 5,
+  "notes": [
+    {
+      "slug": "5S 生图提示法",
+      "title": "5S 生图提示法",
+      "tags": [
+        "topic+ai",
+        "digital-garden"
+      ],
+      "created": "2026-10-21",
+      "updated": "2026-10-21",
+      "source": "04 Resources/concepts/5S 生图提示法.md"
+    },
+    {
+      "slug": "工作产物的四类必要信息",
+      "title": "工作产物的四类必要信息",
+      "tags": [
+        "topic+pkm",
+        "topic+product-management",
+        "digital-garden"
+      ],
+      "created": "2026-10-21",
+      "updated": "2026-10-21",
+      "source": "04 Resources/concepts/工作产物的四类必要信息.md"
+    },
+    {
+      "slug": "SLI、SLO 与错误预算",
+      "title": "SLI、SLO 与错误预算",
+      "tags": [
+        "digital-garden"
+      ],
+      "created": "2026-10-09",
+      "updated": "2026-10-09",
+      "source": "04 Resources/concepts/SLI、SLO 与错误预算.md"
+    },
+    {
+      "slug": "有效排障与证据驱动调查",
+      "title": "有效排障与证据驱动调查",
+      "tags": [
+        "digital-garden"
+      ],
+      "created": "2026-10-09",
+      "updated": "2026-10-09",
+      "source": "04 Resources/concepts/有效排障与证据驱动调查.md"
+    },
+    {
+      "slug": "bus-ticket-theory-of-genius",
+      "title": "The Bus Ticket Theory of Genius",
+      "tags": [
+        "resource",
+        "concept",
+        "paul-graham",
+        "creativity",
+        "digital-garden"
+      ],
+      "created": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "04 Resources/concepts/bus-ticket-theory-of-genius.md"
+    }
+  ]
 }
