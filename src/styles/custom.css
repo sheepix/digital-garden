@@ -178,28 +178,59 @@ h6 {
   color: var(--ink);
 }
 
-/* 搜索按钮做成虚线小纸条 */
-button[data-open-modal] {
-  background: var(--paper-3);
-  border: 1px solid var(--line);
-  border-radius: 7px;
-  color: var(--ink-2);
-  font-size: 0.78rem;
-  padding: 0.4rem 0.7rem;
-  transition: border-color 0.25s, color 0.25s;
+/* 搜索按钮做成虚线小纸条（仅桌面端，移动端原生是纯图标按钮） */
+@media (min-width: 50rem) {
+  button[data-open-modal] {
+    background: var(--paper-3);
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    color: var(--ink-2);
+    font-size: 0.78rem;
+    padding: 0.4rem 0.7rem;
+    transition: border-color 0.25s, color 0.25s;
+  }
+
+  button[data-open-modal]:hover {
+    border-color: var(--mustard);
+    color: var(--terra-deep);
+  }
+
+  button[data-open-modal] kbd {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    color: var(--ink-3);
+    font-size: 0.7rem;
+  }
 }
 
-button[data-open-modal]:hover {
-  border-color: var(--mustard);
-  color: var(--terra-deep);
-}
+/* 移动端：搜索按钮保持紧凑方形，不撑开顶栏 */
+@media (max-width: 49.99rem) {
+  button[data-open-modal] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    padding: 0;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--ink-2);
+    font-size: 1.15rem;
+    line-height: 1;
+  }
 
-button[data-open-modal] kbd {
-  background: var(--paper-2);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  color: var(--ink-3);
-  font-size: 0.7rem;
+  button[data-open-modal]:hover,
+  button[data-open-modal]:focus-visible {
+    background: var(--paper-3);
+    color: var(--terra-deep);
+  }
+
+  /* 快捷键提示在移动端无意义，强制隐藏避免占位 */
+  button[data-open-modal] kbd {
+    display: none !important;
+  }
 }
 
 .social-icons a {
@@ -210,18 +241,16 @@ button[data-open-modal] kbd {
   color: var(--terra-deep);
 }
 
-/* 明暗切换 */
+/* 明暗切换：只改配色，保留原生 padding-inline 给左侧图标与右侧箭头留位 */
 starlight-theme-select label,
 starlight-theme-select select {
   color: var(--ink-2);
-  font-size: 0.78rem;
 }
 
 starlight-theme-select select {
-  background: var(--paper-3);
+  background-color: var(--paper-3);
   border: 1px dashed var(--line);
   border-radius: 7px;
-  padding: 0.3rem 0.45rem;
 }
 
 starlight-theme-select select:hover {
